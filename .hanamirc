@@ -1,0 +1,4 @@
+project=planning_poker
+architecture=container
+test=rspec
+template=erb
