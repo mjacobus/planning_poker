@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'rake'
 gem 'hanami',       '1.0.0.beta3'
 gem 'hanami-model', '~> 1.0.0.beta3'
+gem 'sass'
 
 gem 'mysql2'
 
