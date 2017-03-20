@@ -1,1 +1,1 @@
-document.write('haaa from javascript')
+console.log('hallo from apps/web/assets/javascripts/sandbox.js')
