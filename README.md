@@ -1,13 +1,35 @@
 Planning Poker
 ---------------
 
-Installing, running the project:
+### Project Setup
 
-```shell
+Installing dependencies, creates database
+
+```bash
 bundle install
 bundle exec hanami db prepare
 bundle exec hanami db migrate
-bundle exec hanami db server
+```
+
+Starting the server:
+
+```bash
+bundle exec hanami server
+```
+
+Navigate to [localhost:2300](http://localhost:2300)
+
+### Running the tests
+
+```bash
+HANAMI_ENV=test bundle exec hanami db prepare
+HANAMI_ENV=test bundle exec hanami db migrate
+```
+
+Running the tests
+
+```bash
+bundle exec rspec
 ```
 
 Navigate to [localhost:2300](http://localhost:2300)
