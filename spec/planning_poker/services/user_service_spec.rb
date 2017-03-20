@@ -38,4 +38,24 @@ RSpec.describe UserService do
       end
     end
   end
+
+  describe '#find_by_id' do
+    let(:user) { repository.create(name: 'foo') }
+
+    describe 'when user exists' do
+      it 'returns a user by the given id' do
+        found = subject.find_by_id(user.id)
+
+        expect(found).to eq(user)
+      end
+    end
+
+    describe 'when user does not exist' do
+      it 'throws an exception' do
+        expect do
+          subject.find_by_id(-1)
+        end.to raise_error(UserService::UserNotFound)
+      end
+    end
+  end
 end

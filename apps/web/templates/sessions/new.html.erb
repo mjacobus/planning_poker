@@ -1,0 +1,10 @@
+<% if user_session.logged_in? %>
+  <p> Welcome <%= user_session.current_user.name %>!</p>
+<% end %>
+
+<%=
+  form_for :user, '/api/sessions' do
+    text_field :name
+    submit 'Login'
+  end
+%>

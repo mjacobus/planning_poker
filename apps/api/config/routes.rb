@@ -3,5 +3,6 @@
 #
 # Example:
 # get '/hello', to: ->(env) { [200, {}, ['Hello from Hanami!']] }
-get '/sessions/new', to: 'sessions#new'
-get '/sandbox', to: 'sandbox#index'
+post '/sessions', to: 'sessions#create'
+delete '/sessions', to: 'sessions#destroy'
+get '/sessions/destroy', to: 'sessions#destroy'
