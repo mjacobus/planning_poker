@@ -101,3 +101,11 @@ RSpec.configure do |config|
   Kernel.srand config.seed
 =end
 end
+
+def require_app_file(file)
+  require_relative "./../apps/#{file}"
+end
+
+def require_lib_file(file)
+  require_relative "./../lib/#{file}"
+end

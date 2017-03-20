@@ -1,4 +1,4 @@
-require_relative '../../../../apps/web/views/sandbox/index'
+require_app_file 'web/views/sandbox/index'
 
 RSpec.describe Web::Views::Sandbox::Index do
   let(:exposures) { Hash[foo: 'bar'] }
@@ -7,7 +7,7 @@ RSpec.describe Web::Views::Sandbox::Index do
   let(:rendered)  { view.render }
 
   it 'exposes #foo' do
-    pending 'This is an auto-generated test. Edit it and add your own tests.'
+    skip 'This is an auto-generated test. Edit it and add your own tests.'
 
     # Example
     expect(view.foo).to eq exposures.fetch(:foo)
