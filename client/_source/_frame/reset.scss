@@ -1,9 +1,9 @@
 * {
-    -webkit-tap-highlight-color: transparent;
-    border: 0 none;
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  -webkit-tap-highlight-color: transparent;
+  border: 0 none;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 input,
@@ -16,5 +16,5 @@ input:focus,
 select:focus,
 textarea:focus,
 button:focus {
-    outline: none;
+  outline: none;
 }

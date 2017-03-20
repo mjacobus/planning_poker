@@ -1,2 +1,2 @@
-import Component from './component.jsx';
-export default Component;
+import Container from './container';
+export default Container;

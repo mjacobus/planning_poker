@@ -3,42 +3,28 @@
 
 html,
 body {
-    -webkit-text-size-adjust: none; /** Prevent font scaling in landscape */
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    background-color: $color__background--light;
-    font-family: $font__family--text;
-    font-size: $size--phone;
-    height: 100%;
+  -webkit-text-size-adjust: none; /** Prevent font scaling in landscape */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: $color--light;
+  font-family: $font__family--text;
+  font-size: $size--mobile;
+  height: 100%;
 
-    @include tablet {
-        font-size: $size--tablet;
-    }
+  @include tablet {
+    font-size: $size--tablet;
+  }
 
-    @include desktop {
-        font-size: $size--desktop;
-    }
-
-    &.booky--no-animation {
-        transition: none !important;
-    }
-
-    &.booky--no-scrolling {
-        overflow: hidden;
-    }
-
-    @include mobile-tablet {
-        &.booky--no-scrolling-mobile-tablet {
-            overflow: hidden;
-        }
-    }
+  @include desktop {
+    font-size: $size--desktop;
+  }
 }
 
 ::-moz-selection {
-    color: $color__font--light;
-    background-color: $color__font--primary;
+  color: $color--light;
+  background-color: $color--primary;
 }
 ::selection {
-    color: $color__font--light;
-    background-color: $color__font--primary;
+  color: $color--light;
+  background-color: $color--primary;
 }
