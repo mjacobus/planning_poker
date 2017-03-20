@@ -1,0 +1,9 @@
+lib-cov
+coverage
+node_modules
+_public
+docs
+*.lnk
+npm-debug.log
+env.prod.js
+env.dev.js
