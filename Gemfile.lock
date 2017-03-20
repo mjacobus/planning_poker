@@ -3,6 +3,10 @@ GEM
   specs:
     addressable (2.5.0)
       public_suffix (~> 2.0, >= 2.0.2)
+    babel-source (5.8.35)
+    babel-transpiler (0.7.0)
+      babel-source (>= 4.0, < 6)
+      execjs (~> 2.0)
     capybara (2.13.0)
       addressable
       mime-types (>= 1.16)
@@ -46,6 +50,7 @@ GEM
       dry-equalizer (~> 0.2)
       dry-logic (~> 0.4, >= 0.4.0)
       dry-types (~> 0.9, >= 0.9.0)
+    execjs (2.7.0)
     hanami (1.0.0.beta3)
       bundler (~> 1.13)
       concurrent-ruby (~> 1.0)
@@ -158,6 +163,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  babel-transpiler
   capybara
   dotenv (~> 2.0)
   hanami (= 1.0.0.beta3)
