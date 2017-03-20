@@ -23,6 +23,6 @@ Estimation::Round:
   estimation: string
   status: string (in_progress, finished)
 
-Estimation::User
+Estimation::User:
   name: string
 ```
