@@ -43,7 +43,7 @@ RSpec.describe Api::Controllers::Sessions::Create do
   context 'on an invalid request' do
     before do
       allow_any_instance_of(UserService).to receive(:create_by_name)
-        .with(username).and_raise(Validator::ValidationError, 'error message')
+        .with(username).and_raise(ValidationError, 'error message')
 
       subject
     end

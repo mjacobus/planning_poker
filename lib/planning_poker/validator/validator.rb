@@ -1,6 +1,4 @@
 class Validator
-  ValidationError = Class.new(DomainError)
-
   def validate!(value)
     @errors = []
     return if valid?(value)
