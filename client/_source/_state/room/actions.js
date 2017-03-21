@@ -70,10 +70,10 @@ export function createRoom(data) {
       const responseData = response.estimation_room;
 
       dispatch(createRoomSuccess({
-        'admin_uuid': responseData.admin_uuid,
-        'voting_uuid': responseData.voting_uuid
+        adminUuid: responseData.admin_uuid,
+        votingUuid: responseData.voting_uuid
       }));
-      browserHistory.push(`/room/${responseData.admin_uuid}`);
+      browserHistory.push(`/room/${responseData.admin_uuid}/admin`);
     })
     .catch((error) => {
       console.log('error', error);

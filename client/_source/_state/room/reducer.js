@@ -20,8 +20,8 @@ const reducer = (state = {}, action) => {
     case constants.CREATE_ROOM_SUCCESS:
       return Object.assign({}, state, {
         pending: false,
-        'admin_uuid': action.admin_uuid,
-        'voting_uuid': action.voting_uuid
+        adminUuid: action.adminUuid,
+        votingUuid: action.votingUuid
       });
 
     case constants.CREATE_ROOM_FAILURE:
