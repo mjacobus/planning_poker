@@ -5,7 +5,8 @@ import { actions } from '../../_state/room';
 export const mapStateToProps = function(state) {
   return {
     name: state.room.name,
-    description: state.room.description
+    description: state.room.description,
+    pending: state.room.pending
   };
 };
 

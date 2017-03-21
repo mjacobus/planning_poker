@@ -1,4 +1,5 @@
 import * as constants from './constants';
+import 'whatwg-fetch';
 
 export function setRoomName(value) {
   return {
@@ -14,11 +15,55 @@ export function setRoomDesc(value) {
   };
 }
 
-export function createRoom(payload) {
-  console.log(payload);
-
+export function createRoomStart() {
   return {
-    type: constants.CREATE_ROOM,
-    payload
+    type: constants.CREATE_ROOM_START
+  };
+}
+
+export function createRoomFailure() {
+  return {
+    type: constants.CREATE_ROOM_FAILURE
+  };
+}
+
+export function createRoomSuccess() {
+  return {
+    type: constants.CREATE_ROOM_SUCCESS
+  };
+}
+
+function checkStatus(response) {
+  if (response.status >= 200 && response.status < 300) {
+    return response;
+  }
+
+  const error = new Error(response.statusText);
+  
+  error.response = response;
+  throw error;
+}
+
+export function createRoom(payload) {
+  return function(dispatch) {
+    dispatch(createRoomStart());
+
+    return fetch('/room', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(payload)
+    })
+    .then(checkStatus)
+    .then((response) => response.json())
+    .then((response) => {
+      console.log('response', response);
+      dispatch(createRoomSuccess());
+    })
+    .catch((error) => {
+      console.log('error', error);
+      dispatch(createRoomFailure());
+    });
   };
 }

@@ -10,12 +10,14 @@ export default class Home extends Component {
   }
 
   handleSubmit(event) {
+    event.preventDefault();
+    
     this.props.createRoom({
       name: this.props.name,
       description: this.props.description
     });
     
-    event.preventDefault();
+    
   }
 
   handleNameChange(event) {

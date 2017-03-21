@@ -1,6 +1,8 @@
 export default {
   room: {
     name: '',
-    description: ''
+    description: '',
+    stories: [],
+    pending: false
   }
 };

@@ -12,6 +12,21 @@ const reducer = (state = {}, action) => {
         description: action.value
       });
 
+    case constants.CREATE_ROOM_START:
+      return Object.assign({}, state, {
+        pending: true
+      });
+
+    case constants.CREATE_ROOM_SUCCESS:
+      return Object.assign({}, state, {
+        pending: false
+      });
+
+    case constants.CREATE_ROOM_FAILURE:
+      return Object.assign({}, state, {
+        pending: false
+      });
+
     default:
       return state;
   }
