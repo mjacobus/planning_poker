@@ -1,5 +1,6 @@
 import * as constants from './constants';
 import 'whatwg-fetch';
+import { browserHistory } from 'react-router';
 
 export function setRoomName(value) {
   return {
@@ -27,9 +28,10 @@ export function createRoomFailure() {
   };
 }
 
-export function createRoomSuccess() {
+export function createRoomSuccess(payload) {
   return {
-    type: constants.CREATE_ROOM_SUCCESS
+    type: constants.CREATE_ROOM_SUCCESS,
+    payload
   };
 }
 
@@ -44,7 +46,7 @@ function checkStatus(response) {
   throw error;
 }
 
-export function createRoom(estimation_room) {
+export function createRoom(data) {
   return function(dispatch) {
     dispatch(createRoomStart());
 
@@ -54,14 +56,24 @@ export function createRoom(estimation_room) {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        estimation_room
+        'estimation_room': {
+          description: data.description,
+          name: data.name
+        }
       })
     })
     .then(checkStatus)
     .then((response) => response.json())
     .then((response) => {
       console.log('response', response);
-      dispatch(createRoomSuccess());
+
+      const responseData = response.estimation_room;
+
+      dispatch(createRoomSuccess({
+        'admin_uuid': responseData.admin_uuid,
+        'voting_uuid': responseData.voting_uuid
+      }));
+      browserHistory.push(`/room/${responseData.admin_uuid}`);
     })
     .catch((error) => {
       console.log('error', error);
