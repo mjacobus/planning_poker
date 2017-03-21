@@ -3,6 +3,7 @@ import Heading from '../../atoms/heading';
 import Subheading from '../../atoms/subheading';
 import Label from '../../atoms/label';
 import Input from '../../atoms/input';
+import Button from '../../atoms/button';
 import Page from '../../templates/page';
 import './index.scss';
 
@@ -42,7 +43,7 @@ export default class Home extends Component {
           <Input required type="text" value={ this.props.name } onChange={ this.handleNameChange } />
           <Label text="Description and notes" />
           <Input required type="text" value={ this.props.description } onChange={ this.handleDescChange } />
-          <input type="submit" value="Create a new Room" />
+          <Button type="submit" text="Create a new Room" />
         </form>
       </Page>
     );

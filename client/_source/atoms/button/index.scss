@@ -1,0 +1,17 @@
+@import "../../_frame/config";
+
+.button {
+  cursor: pointer;
+  display: inline-block;
+  font-family: $font__family--text;
+  font-size: 1rem;
+  height: 38px;
+  line-height: 38px;
+  padding: 0 30px;
+  transition: color 0.2s linear, background-color 0.2s linear;
+  user-select: none;
+  white-space: nowrap;
+  background-color: $color--primary;
+  color: $color--light;
+  margin-top: 10px;
+}
