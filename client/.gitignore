@@ -5,5 +5,4 @@ _public
 docs
 *.lnk
 npm-debug.log
-env.prod.js
-env.dev.js
+npm-debug.log.*
