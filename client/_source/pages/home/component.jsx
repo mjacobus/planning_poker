@@ -5,25 +5,33 @@ export default class Home extends Component {
     super(props);
 
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChange = this.handleChange.bind(this);
+    this.handleNameChange = this.handleNameChange.bind(this);
+    this.handleDescChange = this.handleDescChange.bind(this);
   }
 
   handleSubmit(event) {
-    //console.log(this.props.name);
+    this.props.createRoom({
+      name: this.props.name,
+      description: this.props.description
+    });
+    
     event.preventDefault();
   }
 
-  handleChange(e) {
-    this.props.setRoomName(e.target.value);
+  handleNameChange(event) {
+    this.props.setRoomName(event.target.value);
+  }
+
+  handleDescChange(event) {
+    this.props.setRoomDesc(event.target.value);
   }
 
   render() {
-    //console.log(this.props.name);
-
     return (
       <form onSubmit={ this.handleSubmit }>
         <label>{ 'Room name:' }</label>
-        <input type="text" value={ this.props.name } onChange={ this.handleChange } />
+        <input required type="text" value={ this.props.name } onChange={ this.handleNameChange } />
+        <input required type="text" value={ this.props.description } onChange={ this.handleDescChange } />
         <input type="submit" value="Submit" />
       </form>
     );
@@ -32,5 +40,8 @@ export default class Home extends Component {
 
 Home.propTypes = {
   name: PropTypes.string.isRequired,
-  setRoomName: PropTypes.func.isRequired
+  description: PropTypes.string.isRequired,
+  setRoomName: PropTypes.func.isRequired,
+  setRoomDesc: PropTypes.func.isRequired,
+  createRoom: PropTypes.func.isRequired
 };

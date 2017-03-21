@@ -1,5 +1,6 @@
 export default {
   room: {
-    name: ''
+    name: '',
+    description: ''
   }
 };

@@ -6,3 +6,19 @@ export function setRoomName(value) {
     value
   };
 }
+
+export function setRoomDesc(value) {
+  return {
+    type: constants.SET_ROOM_DESC,
+    value
+  };
+}
+
+export function createRoom(payload) {
+  console.log(payload);
+
+  return {
+    type: constants.CREATE_ROOM,
+    payload
+  };
+}

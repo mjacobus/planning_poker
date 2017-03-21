@@ -7,6 +7,11 @@ const reducer = (state = {}, action) => {
         name: action.value
       });
 
+    case constants.SET_ROOM_DESC:
+      return Object.assign({}, state, {
+        description: action.value
+      });
+
     default:
       return state;
   }
