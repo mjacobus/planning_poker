@@ -28,13 +28,13 @@ RSpec.describe UserService do
       it 'raises error with empty name' do
         expect do
           subject.create_by_name('')
-        end.to raise_error(Validator::ValidationError, 'Name cannot be empty')
+        end.to raise_error(ValidationError, 'Name cannot be empty')
       end
 
       it 'raises error with nil name' do
         expect do
           subject.create_by_name(nil)
-        end.to raise_error(Validator::ValidationError, 'Name cannot be empty')
+        end.to raise_error(ValidationError, 'Name cannot be empty')
       end
     end
   end
