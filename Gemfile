@@ -19,6 +19,9 @@ end
 
 group :test, :development do
   gem 'dotenv', '~> 2.0'
+  gem 'pry'
+  gem 'rubocop'
+  gem 'reek'
 end
 
 group :test do
