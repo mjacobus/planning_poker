@@ -3,7 +3,7 @@ Project Specifications/Ideas
 
 ```yml
 Estimation::Room:
-  moderation_uuid: string
+  admin_uuid: string
   voting_uuid: string
   name: string
   description: string
