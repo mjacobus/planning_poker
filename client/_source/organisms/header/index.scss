@@ -1,0 +1,9 @@
+@import "../../_frame/config";
+
+.header {
+  display: flex;
+  height: $size--mobile;
+  justify-content: center;
+  align-items: center;
+  background-color: blue;
+}

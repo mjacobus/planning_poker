@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import './index.scss';
 
 export default class Home extends Component {
   constructor(props) {
@@ -11,13 +12,11 @@ export default class Home extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    
+
     this.props.createRoom({
       name: this.props.name,
       description: this.props.description
     });
-    
-    
   }
 
   handleNameChange(event) {
@@ -30,7 +29,7 @@ export default class Home extends Component {
 
   render() {
     return (
-      <form onSubmit={ this.handleSubmit }>
+      <form className="form" onSubmit={ this.handleSubmit }>
         <label>{ 'Room name:' }</label>
         <input required type="text" value={ this.props.name } onChange={ this.handleNameChange } />
         <input required type="text" value={ this.props.description } onChange={ this.handleDescChange } />
