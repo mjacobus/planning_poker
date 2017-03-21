@@ -10,6 +10,7 @@ body {
   font-family: $font__family--text;
   font-size: $size--mobile;
   height: 100%;
+  color: $color--dark;
 
   @include tablet {
     font-size: $size--tablet;

@@ -2,8 +2,11 @@
 
 .header {
   display: flex;
-  height: $size--mobile;
+  height: 47px;
   justify-content: center;
   align-items: center;
-  background-color: blue;
+  background-color: $color--primary;
+  color: $color--light;
+  font-size: 1.714rem;
+  font-family: $font__family--heading;
 }

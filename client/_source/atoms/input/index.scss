@@ -1,0 +1,15 @@
+@import "../../_frame/config";
+
+.input {
+  background-color: $color--light;
+  display: block;
+  font-family: $font__family--text;
+  color: $color--dark;
+  height: 36px;
+  border: 1px solid $color--dark;
+  font-size: 1.286rem;
+  padding: 0 10px;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  width: 100%;
+}
