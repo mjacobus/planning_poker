@@ -9,26 +9,14 @@ import './index.scss';
 
 export default class Room extends Component {
   render() {
-    const adminUrl = `${window.location.origin}/room/${this.props.adminUuid}/admin`;
-    const votingUrl = `${window.location.origin}/room/${this.props.votingUuid}`;
-
+    // check for uuid
+    
     return (
       this.props.adminUuid && this.props.votingUuid ? (
-        <div>
-          <div className="links">
-            <div className="links__content">
-              <Label text="Share the room link" />
-              <Input type="text" value={ adminUrl } />
-              <Label text="Share the voting link" />
-              <Input required type="text" value={ votingUrl } />
-            </div>
-          </div>
-          <Page className="room">
-            <Heading text={ this.props.name } />
-            <Subheading text={ this.props.description } />
-            <Button text="Add a new story" />
-          </Page>
-        </div>
+        <Page className="room">
+          <Heading text={ this.props.name } />
+          <Subheading text={ this.props.description } />
+        </Page>
       ) : (
         <div>
           <Page className="room">
@@ -47,7 +35,7 @@ Room.propTypes = {
   votingUuid: PropTypes.string
 };
 
-Button.defaultProps = {
+Room.defaultProps = {
   name: '',
   description: '',
   adminUuid: '',
