@@ -44,16 +44,18 @@ function checkStatus(response) {
   throw error;
 }
 
-export function createRoom(payload) {
+export function createRoom(estimation_room) {
   return function(dispatch) {
     dispatch(createRoomStart());
 
-    return fetch('/room', {
+    return fetch('/api/estimation_rooms', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(payload)
+      body: JSON.stringify({
+        estimation_room
+      })
     })
     .then(checkStatus)
     .then((response) => response.json())
