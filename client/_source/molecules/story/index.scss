@@ -1,0 +1,29 @@
+.story {
+  max-width: 650px;
+  border: 1px solid #979797;
+  margin-bottom: 10px;
+  padding: 25px;
+  display: flex;
+  align-items: center;
+}
+
+.story__estimation {
+  font-size: 4.571rem;
+  width: 75px;
+  text-align: center;
+  margin-right: 15px;
+}
+
+.story__name {
+  margin-bottom: 0;
+  text-align: left;
+}
+
+.story__description {
+  text-align: left;
+  margin-bottom: 0;
+}
+
+.story__hr {
+  
+}
