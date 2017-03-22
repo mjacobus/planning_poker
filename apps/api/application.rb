@@ -90,11 +90,13 @@ module Api
       # Argument: A symbol representation of a mime type, defaults to :html
       #
       # default_request_format :html
+      default_request_format :json
 
       # Default format for responses that don't consider the request format
       # Argument: A symbol representation of a mime type, defaults to :html
       #
       # default_response_format :html
+      default_response_format :json
 
       # HTTP Body parsers
       # Parse non GET responses body for a specific mime type
@@ -103,6 +105,7 @@ module Api
       #           Object, the parser
       #
       # body_parsers :json
+      body_parsers :json
 
       # When it's true and the router receives a non-encrypted request (http),
       # it redirects to the secure equivalent (https). Disabled by default.

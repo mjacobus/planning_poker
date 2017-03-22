@@ -10,6 +10,7 @@ module Api::Controllers::EstimationRooms
     # end
 
     def call(params)
+      self.body = params.to_h.to_json
       room = EstimationRoomService.new.create(params[:estimation_room])
 
       json_response(id: room.id,
