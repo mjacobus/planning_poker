@@ -50,7 +50,7 @@ export function createRoom(data) {
   return function(dispatch) {
     dispatch(createRoomStart());
 
-    return fetch('/api/estimation_rooms', {
+    return fetch('http://localhost:2300/api/estimation_rooms', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
