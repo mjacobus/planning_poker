@@ -19,8 +19,8 @@
     "clean-dist": "npm run remove-dist && mkdir _public",
     "remove-dist": "rimraf ./_public",
     "prebuild": "npm run clean-dist && npm run lint",
-    "build": "babel-node tools/build.js && npm run open:public",
-    "build:quick": "babel-node tools/build.js"
+    "build": "babel-node tools/build.js",
+    "build:server": "babel-node tools/build.js && npm run open:public"
   },
   "author": "Nico Thiebes",
   "license": "SEE LICENSE IN \"LICENSE\"",
