@@ -8,10 +8,18 @@
   height: 38px;
   line-height: 38px;
   padding: 0 30px;
-  transition: color 0.2s linear, background-color 0.2s linear;
   user-select: none;
   white-space: nowrap;
+  margin-top: 10px;
+}
+
+.button--primary {
   background-color: $color--primary;
   color: $color--light;
-  margin-top: 10px;
+}
+
+.button--secondary {
+  background-color: transparent;
+  color: $color--primary;
+  padding: 0;
 }
