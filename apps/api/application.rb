@@ -262,6 +262,7 @@ module Api
         # before :authenticate!    # run an authentication before callback
         include Mvc::Controller::UserSession
         include Mvc::Controller::JsonResponse
+        include Mvc::Controller::SkipCsrfVerification
       end
 
       # Configure the code that will yield each time Api::View is included

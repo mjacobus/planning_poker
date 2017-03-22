@@ -2,9 +2,7 @@
   <p> Welcome <%= user_session.current_user.name %>!</p>
 <% end %>
 
-<%=
-  form_for :user, '/api/sessions' do
-    text_field :name
-    submit 'Login'
-  end
-%>
+<form action="/api/sessions" method="post">
+  <input type="text" class="text" value="" name="user[name]">
+  <input type="submit" class="text" value="Submit" name="">
+</form>
