@@ -7,13 +7,16 @@ export const mapStateToProps = function(state) {
     name: state.room.name,
     description: state.room.description,
     adminUuid: state.room.adminUuid,
-    votingUuid: state.room.votingUuid
+    votingUuid: state.room.votingUuid,
+    stories: state.room.stories
   };
 };
 
 export const mapDispatchToProps = function(dispatch) {
   return {
-    
+    createStory: (data) => {
+      dispatch(actions.createStory(data));
+    }
   };
 };
 

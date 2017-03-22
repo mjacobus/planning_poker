@@ -17,6 +17,11 @@ const reducer = (state = {}, action) => {
         pending: true
       });
 
+    case constants.CREATE_ROOM_FAILURE:
+      return Object.assign({}, state, {
+        pending: false
+      });
+
     case constants.CREATE_ROOM_SUCCESS:
       return Object.assign({}, state, {
         pending: false,
@@ -24,9 +29,22 @@ const reducer = (state = {}, action) => {
         votingUuid: action.votingUuid
       });
 
-    case constants.CREATE_ROOM_FAILURE:
+    case constants.CREATE_STORY_START:
+      return Object.assign({}, state, {
+        pending: true
+      });
+
+    case constants.CREATE_STORY_FAILURE:
       return Object.assign({}, state, {
         pending: false
+      });
+
+    case constants.CREATE_STORY_SUCCESS:
+      return Object.assign({}, state, {
+        pending: false,
+        name: action.name,
+        description: action.description,
+        stories: action.stories
       });
 
     default:

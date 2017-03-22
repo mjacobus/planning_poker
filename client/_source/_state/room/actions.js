@@ -31,7 +31,29 @@ export function createRoomFailure() {
 export function createRoomSuccess(payload) {
   return {
     type: constants.CREATE_ROOM_SUCCESS,
-    payload
+    adminUuid: payload.adminUuid,
+    votingUuid: payload.votingUuid
+  };
+}
+
+export function createStoryStart() {
+  return {
+    type: constants.CREATE_STORY_START
+  };
+}
+
+export function createStoryFailure() {
+  return {
+    type: constants.CREATE_STORY_FAILURE
+  };
+}
+
+export function createStorySuccess(payload) {
+  return {
+    type: constants.CREATE_STORY_SUCCESS,
+    name: payload.name,
+    description: payload.description,
+    stories: payload.stories
   };
 }
 
@@ -65,8 +87,6 @@ export function createRoom(data) {
     .then(checkStatus)
     .then((response) => response.json())
     .then((response) => {
-      console.log('response', response);
-
       const responseData = response.estimation_room;
 
       dispatch(createRoomSuccess({
@@ -78,6 +98,39 @@ export function createRoom(data) {
     .catch((error) => {
       console.log('error', error);
       dispatch(createRoomFailure());
+    });
+  };
+}
+
+export function createStory(data) {
+  return function(dispatch) {
+    dispatch(createStoryStart());
+
+    return fetch('/api/estimation_story', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        'estimation_story': {
+          'admin_uuid': data.adminUuid
+        }
+      })
+    })
+    .then(checkStatus)
+    .then((response) => response.json())
+    .then((response) => {
+      const responseData = response.estimation_story;
+
+      dispatch(createStorySuccess({
+        name: responseData.admin_uuid,
+        description: responseData.voting_uuid,
+        stories: responseData.stories
+      }));
+    })
+    .catch((error) => {
+      console.log('error', error);
+      dispatch(createStoryFailure());
     });
   };
 }
