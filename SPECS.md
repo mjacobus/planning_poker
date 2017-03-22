@@ -26,3 +26,11 @@ Estimation::Round:
 Estimation::User:
   name: string
 ```
+
+GET room
+Request:
+  admin_uuid: string
+Response:
+  name: string
+  url: string
+  stories: array
