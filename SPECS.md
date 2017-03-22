@@ -28,7 +28,7 @@ Estimation::User:
 ```
 
 GET room
-```
+```yml
 Request:
   admin_uuid: string
 Response:
