@@ -32,7 +32,7 @@ RSpec.describe Api::Controllers::EstimationRooms::Create do
 
     it 'responds with success json' do
       expect(subject).to have_response_status(200)
-      expect(subject).to have_json_body(room_attributes)
+      expect(subject).to have_json_body(estimation_room: room_attributes)
       expect(subject).to be_json
     end
   end
