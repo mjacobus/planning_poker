@@ -36,6 +36,27 @@ export function createRoomSuccess(payload) {
   };
 }
 
+export function getRoomStart() {
+  return {
+    type: constants.GET_ROOM_START
+  };
+}
+
+export function getRoomFailure() {
+  return {
+    type: constants.GET_ROOM_FAILURE
+  };
+}
+
+export function getRoomSuccess(payload) {
+  return {
+    type: constants.GET_ROOM_SUCCESS,
+    name: payload.name,
+    description: payload.description,
+    stories: payload.stories
+  };
+}
+
 export function createStoryStart() {
   return {
     type: constants.CREATE_STORY_START
@@ -48,12 +69,9 @@ export function createStoryFailure() {
   };
 }
 
-export function createStorySuccess(payload) {
+export function createStorySuccess() {
   return {
-    type: constants.CREATE_STORY_SUCCESS,
-    name: payload.name,
-    description: payload.description,
-    stories: payload.stories
+    type: constants.CREATE_STORY_SUCCESS
   };
 }
 
@@ -102,6 +120,34 @@ export function createRoom(data) {
   };
 }
 
+export function getRoom(adminUuid) {
+  return function(dispatch) {
+    dispatch(getRoomStart());
+
+    return fetch(`/api/estimation_rooms/${adminUuid}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(checkStatus)
+    .then((response) => response.json())
+    .then((response) => {
+      const responseData = response.estimation_rooms;
+
+      dispatch(getRoomSuccess({
+        name: responseData.name,
+        description: responseData.description,
+        stories: responseData.stories
+      }));
+    })
+    .catch((error) => {
+      console.log('error', error);
+      dispatch(getRoomFailure());
+    });
+  };
+}
+
 export function createStory(data) {
   return function(dispatch) {
     dispatch(createStoryStart());
@@ -113,20 +159,14 @@ export function createStory(data) {
       },
       body: JSON.stringify({
         'estimation_story': {
-          'admin_uuid': data.adminUuid
+          // 
         }
       })
     })
     .then(checkStatus)
     .then((response) => response.json())
     .then((response) => {
-      const responseData = response.estimation_story;
-
-      dispatch(createStorySuccess({
-        name: responseData.admin_uuid,
-        description: responseData.voting_uuid,
-        stories: responseData.stories
-      }));
+      dispatch(createStorySuccess());
     })
     .catch((error) => {
       console.log('error', error);

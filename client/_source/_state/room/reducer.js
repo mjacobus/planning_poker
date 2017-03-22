@@ -29,6 +29,24 @@ const reducer = (state = {}, action) => {
         votingUuid: action.votingUuid
       });
 
+    case constants.GET_ROOM_START:
+      return Object.assign({}, state, {
+        pending: true
+      });
+
+    case constants.GET_ROOM_FAILURE:
+      return Object.assign({}, state, {
+        pending: false
+      });
+
+    case constants.GET_ROOM_SUCCESS:
+      return Object.assign({}, state, {
+        pending: false,
+        name: action.name,
+        description: action.description,
+        stories: action.stories
+      });
+
     case constants.CREATE_STORY_START:
       return Object.assign({}, state, {
         pending: true

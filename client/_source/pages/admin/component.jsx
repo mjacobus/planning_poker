@@ -5,6 +5,7 @@ import Label from '../../atoms/label';
 import Input from '../../atoms/input';
 import Button from '../../atoms/button';
 import Page from '../../templates/page';
+import Story from '../../molecules/story';
 import './index.scss';
 
 export default class Admin extends Component {
@@ -44,9 +45,9 @@ export default class Admin extends Component {
       isOpen: false
     });
 
-    this.props.createStory({
+    /* this.props.createStory({
       adminUuid: this.state.adminUuid
-    });
+    });*/
   }
 
   handleNameChange(event) {
@@ -61,64 +62,89 @@ export default class Admin extends Component {
     });
   }
 
-  render() {
-    let { name, description, adminUuid, votingUuid } = this.props;
-    const adminUrl = `${window.location.origin}/room/${this.props.adminUuid}/admin`;
-    const votingUrl = `${window.location.origin}/room/${this.props.votingUuid}`;
-    const isOpen = this.state.isOpen;
+  componentDidMount() {
+    this.props.getRoom(this.props.params.id);
+    
+    return;
 
-    if (!adminUuid || votingUuid) {
-      // get room via adminUuid
+    let adminUuid = '';
+
+    if (!adminUuid || !votingUuid) {
+      
       
       // for testing
       adminUuid = true;
       votingUuid = true;
       name = 'Test name';
       description = 'Test description';
+      stories = [{
+        name: 'Test story',
+        description: 'Test description',
+        finalEstimation: 5
+      }, {
+        name: 'Test story 2',
+        description: 'Test description 2',
+        finalEstimation: 10
+      }];
     }
+  }
+
+  render() {
+    const { name, description, adminUuid, votingUuid, stories, pending } = this.props;
+    const adminUrl = `${window.location.origin}/room/${this.props.adminUuid}/admin`;
+    const votingUrl = `${window.location.origin}/room/${this.props.votingUuid}`;
+    const isOpen = this.state.isOpen;
 
     return (
-      adminUuid && votingUuid ? (
-        <div>
-          <div className="links">
-            <div className="links__content">
-              <Label text="Share the room link" />
-              <Input type="text" value={ adminUrl } />
-              <Label text="Share the voting link" />
-              <Input type="text" value={ votingUrl } />
+      <div>
+        {pending && (
+          <div>{'pending'}</div>
+        )}
+        {adminUuid && votingUuid ? (
+          <div>
+            <div className="links">
+              <div className="links__content">
+                <Label text="Share the room link" />
+                <Input type="text" value={ adminUrl } />
+                <Label text="Share the voting link" />
+                <Input type="text" value={ votingUrl } />
+              </div>
             </div>
+            <Page className="admin">
+              <Heading text={ name } />
+              <Subheading text={ description } />
+              {isOpen ? (
+                <form className="admin__create" onSubmit={ this.handleSubmit }>
+                  <Label text="Your story name" />
+                  <Input required type="text" value={ this.state.storyName } onChange={ this.handleNameChange } />
+                  <Label text="Description and notes" />
+                  <Input type="text" value={ this.state.storyDesc } onChange={ this.handleDescChange } />
+                  <Button type="submit" text="Start planning round" />
+                  <Button text="Close" rank={ 2 } className="admin__close" onClick={ this.onCloseClick } />
+                </form>
+              ) : <Button className="admin__add" text="Add a new story" onClick={ this.onAddStoryClick } />}
+              {stories.map((props, index) => <Story key={ index } { ...props } />)}
+            </Page>
           </div>
-          <Page className="admin">
-            <Heading text={ name } />
-            <Subheading text={ description } />
-            {isOpen ? (
-              <form className="admin__create" onSubmit={ this.handleSubmit }>
-                <Label text="Your story name" />
-                <Input required type="text" value={ this.state.storyName } onChange={ this.handleNameChange } />
-                <Label text="Description and notes" />
-                <Input type="text" value={ this.state.storyDesc } onChange={ this.handleDescChange } />
-                <Button type="submit" text="Start planning round" />
-                <Button text="Close" rank={ 2 } className="admin__button" onClick={ this.onCloseClick } />
-              </form>
-            ) : <Button text="Add a new story" onClick={ this.onAddStoryClick } />}
-          </Page>
-        </div>
-      ) : (
-        <div>
+        ) : (
           <Page className="admin">
             <Heading text="This is not the room you are looking for" />
             <Subheading text="Copied a wrong link?" />
           </Page>
-        </div>
-      ));
+        )}
+      </div>
+    );
   }
 }
 
 Admin.propTypes = {
-  name: PropTypes.string,
-  description: PropTypes.string,
-  adminUuid: PropTypes.string,
-  votingUuid: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  adminUuid: PropTypes.string.isRequired,
+  votingUuid: PropTypes.string.isRequired,
   createStory: PropTypes.func.isRequired,
-  params: PropTypes.object.isRequired
+  getRoom: PropTypes.func.isRequired,
+  params: PropTypes.object.isRequired,
+  stories: PropTypes.array.isRequired,
+  pending: PropTypes.bool.isRequired
 };

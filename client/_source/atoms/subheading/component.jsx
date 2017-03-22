@@ -3,14 +3,17 @@ import './index.scss';
 
 export default class Subheading extends Component {
   render() {
+    const { text, className } = this.props;
+
     return (
-      <h2 className="subheading">
-        { this.props.text }
+      <h2 className={ ['subheading', className].join(' ') }>
+        { text }
       </h2>
     );
   }
 }
 
 Subheading.propTypes = {
-  text: PropTypes.string
+  text: PropTypes.string,
+  className: PropTypes.string
 };

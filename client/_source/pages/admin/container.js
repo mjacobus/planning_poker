@@ -8,7 +8,8 @@ export const mapStateToProps = function(state) {
     description: state.room.description,
     adminUuid: state.room.adminUuid,
     votingUuid: state.room.votingUuid,
-    stories: state.room.stories
+    stories: state.room.stories,
+    pending: state.room.pending
   };
 };
 
@@ -16,6 +17,9 @@ export const mapDispatchToProps = function(dispatch) {
   return {
     createStory: (data) => {
       dispatch(actions.createStory(data));
+    },
+    getRoom: (data) => {
+      dispatch(actions.getRoom(data));
     }
   };
 };
