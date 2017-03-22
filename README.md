@@ -33,3 +33,27 @@ bundle exec rspec
 ```
 
 Navigate to [localhost:2300](http://localhost:2300)
+
+
+### Project Setup Frontend
+
+Install dependencies:
+
+```bash
+cd client
+npm install
+```
+
+Start dev server:
+
+```bash
+cd client
+npm run start
+```
+
+Build:
+
+```bash
+cd client
+npm run build:quick
+```
