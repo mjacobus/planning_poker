@@ -8,6 +8,9 @@ gem 'hanami-model', '~> 1.0.0.beta3'
 gem 'sass'
 gem 'babel-transpiler'
 
+# middleware
+gem 'rack-cors', :require => 'rack/cors'
+
 # database
 gem 'mysql2'
 
