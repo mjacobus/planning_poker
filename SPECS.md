@@ -14,7 +14,8 @@ Estimation::Story:
   url: string
   name: string
   description: string
-  final_estimation: string
+  estimation: string
+  status: string
   rounds: []
 
 Estimation::Round:

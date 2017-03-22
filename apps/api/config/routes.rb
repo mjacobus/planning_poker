@@ -7,3 +7,8 @@ post '/estimation_rooms', to: 'estimation_rooms#create'
 post '/sessions', to: 'sessions#create'
 delete '/sessions', to: 'sessions#destroy'
 get '/sessions/destroy', to: 'sessions#destroy'
+
+#
+# stories
+#
+post '/estimation_rooms/:admin_uuid/stories', to: 'estimation_rooms/stories#create'
