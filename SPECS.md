@@ -28,9 +28,11 @@ Estimation::User:
 ```
 
 GET room
+```
 Request:
   admin_uuid: string
 Response:
   name: string
   url: string
-  stories: array
+  stories: array
+```
