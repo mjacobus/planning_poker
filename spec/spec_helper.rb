@@ -109,3 +109,11 @@ end
 def require_lib_file(file)
   require_relative "./../lib/#{file}"
 end
+
+def fake_attributes(*keys)
+  attributes = {}.tap do |attr|
+    keys.each do |key|
+      attr[key] = "the #{key}"
+    end
+  end
+end
