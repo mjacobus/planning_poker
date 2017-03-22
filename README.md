@@ -51,9 +51,11 @@ cd client
 npm run start
 ```
 
+Navigate to [localhost:3000](http://localhost:3000)
+
 Build:
 
 ```bash
 cd client
-npm run build:quick
+npm run build
 ```
