@@ -33,6 +33,6 @@ Request:
   admin_uuid: string
 Response:
   name: string
-  url: string
+  description: string
   stories: array
 ```
