@@ -1,6 +1,6 @@
 Hanami::Model.migration do
   change do
-    create_table :estimation_rooms do
+    create_table :rooms do
       primary_key :id
 
       column :name, String

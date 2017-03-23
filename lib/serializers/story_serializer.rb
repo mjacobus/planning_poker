@@ -1,4 +1,4 @@
-class EstimationStorySerializer < EntitySerializer
+class StorySerializer < EntitySerializer
   def to_h
     {
       id: object.id,

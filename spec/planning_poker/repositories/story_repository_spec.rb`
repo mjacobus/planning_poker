@@ -1,0 +1,3 @@
+RSpec.describe StoryRepository do
+  # place your tests here
+end

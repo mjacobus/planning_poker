@@ -1,4 +1,4 @@
-RSpec.describe EstimationRoomService do
+RSpec.describe RoomService do
   let(:description) { 'the description' }
   let(:name) { 'the name' }
 
@@ -6,8 +6,8 @@ RSpec.describe EstimationRoomService do
     repository.create(admin_uuid: 'the admin uid')
   end
 
-  let(:repository) { EstimationRoomRepository.new }
-  let(:stories_repository) { EstimationStoryRepository.new }
+  let(:repository) { RoomRepository.new }
+  let(:stories_repository) { StoryRepository.new }
 
   before(:each) do
     repository.clear
@@ -16,7 +16,7 @@ RSpec.describe EstimationRoomService do
   describe '#create' do
     context 'on a successful create' do
       subject do
-        EstimationRoomService.new.create(name: name, description: description)
+        RoomService.new.create(name: name, description: description)
       end
 
       before { subject }
@@ -42,7 +42,7 @@ RSpec.describe EstimationRoomService do
 
     context 'with invalid data' do
       subject do
-        EstimationRoomService.new.create(name: '', description: description)
+        RoomService.new.create(name: '', description: description)
       end
 
       it 'throws validatione exception' do
@@ -104,7 +104,7 @@ RSpec.describe EstimationRoomService do
 
     context 'with invalid data' do
       subject do
-        EstimationRoomService.new.append_story_to_room(example_room, {})
+        RoomService.new.append_story_to_room(example_room, {})
       end
 
       it 'throws validatione exception' do

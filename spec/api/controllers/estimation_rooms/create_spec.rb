@@ -18,14 +18,14 @@ RSpec.describe Api::Controllers::EstimationRooms::Create do
   end
 
   # let(:room) { double(room_attributes) }
-  let(:room) { EstimationRoom.new(room_attributes) }
-  let(:room) { EstimationRoom.new(room_attributes) }
+  let(:room) { Room.new(room_attributes) }
+  let(:room) { Room.new(room_attributes) }
 
   subject { action.call(params) }
 
   describe 'on a valid request' do
     before do
-      allow_any_instance_of(EstimationRoomService).to receive(:create)
+      allow_any_instance_of(RoomService).to receive(:create)
         .with(payload).and_return(room)
 
       subject

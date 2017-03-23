@@ -1,7 +1,7 @@
-class EstimationRoomService
+class RoomService
   def initialize(
-    estimation_repository: EstimationRoomRepository.new,
-    stories_repository: EstimationStoryRepository.new
+    estimation_repository: RoomRepository.new,
+    stories_repository: StoryRepository.new
   )
     @rooms = estimation_repository
     @stories = stories_repository

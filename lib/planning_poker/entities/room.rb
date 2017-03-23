@@ -1,4 +1,4 @@
-class EstimationRoom < Hanami::Entity
+class Room < Hanami::Entity
   attributes do
     attribute :id,          Types::Int
     attribute :name,        Types::String

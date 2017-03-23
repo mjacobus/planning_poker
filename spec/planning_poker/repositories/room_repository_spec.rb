@@ -1,4 +1,4 @@
-RSpec.describe EstimationRoomRepository do
+RSpec.describe RoomRepository do
   let(:factory) { TestFactory.new }
   let(:room) { factory.create_room }
   let(:story1) { factory.create_story(room_id: room.id) }

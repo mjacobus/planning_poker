@@ -1,5 +1,5 @@
-RSpec.describe EstimationRoom do
-  subject { EstimationRoom.new }
+RSpec.describe Room do
+  subject { Room.new }
 
   %w(
     id
@@ -23,7 +23,7 @@ RSpec.describe EstimationRoom do
     it 'can be mutted on the consturctor' do
       stories = ['foo']
 
-      subject = EstimationRoom.new(stories: stories)
+      subject = Room.new(stories: stories)
 
       expect(subject.stories).to be(stories)
     end

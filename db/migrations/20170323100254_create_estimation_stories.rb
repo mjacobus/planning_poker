@@ -1,6 +1,6 @@
 Hanami::Model.migration do
   change do
-    create_table :estimation_stories do
+    create_table :stories do
       primary_key :id
 
       column :room_id, Integer

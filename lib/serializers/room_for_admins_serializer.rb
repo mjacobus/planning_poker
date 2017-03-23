@@ -1,4 +1,4 @@
-class EstimationRoomForAdminsSerializer < EntitySerializer
+class RoomForAdminsSerializer < EntitySerializer
   def to_h
     {
       id: object.id,
@@ -17,7 +17,7 @@ class EstimationRoomForAdminsSerializer < EntitySerializer
   def stories_to_h(stories)
     [].tap do |array|
       stories.each do |story|
-        array << EstimationStorySerializer.new(story).to_h
+        array << StorySerializer.new(story).to_h
       end
     end
   end

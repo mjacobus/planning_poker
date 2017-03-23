@@ -13,7 +13,7 @@ module Api::Controllers::EstimationRooms::Stories
     protected
 
     def room_service
-      @room_service ||= EstimationRoomService.new
+      @room_service ||= RoomService.new
     end
 
     def to_json(story)

@@ -1,4 +1,4 @@
-RSpec.describe EstimationRoomForAdminsSerializer do
+RSpec.describe RoomSerializer do
   let(:attributes) do
     fake_attributes(
       :id,
@@ -20,8 +20,12 @@ RSpec.describe EstimationRoomForAdminsSerializer do
   end
 
   describe '#to_h' do
-    it 'returns the attributes' do
-      expect(subject.to_h).to eq(attributes)
+    it 'hides admin_uuid' do
+      expected = RoomForAdminsSerializer.new(room).to_h
+      expected.delete(:admin_uuid)
+
+      expect(subject.to_h).to eq(expected)
     end
   end
 end
+

@@ -9,11 +9,11 @@ class TestFactory
   end
 
   def rooms
-    @rooms ||= EstimationRoomRepository.new
+    @rooms ||= RoomRepository.new
   end
 
   def stories
-    @stories ||= EstimationStoryRepository.new
+    @stories ||= StoryRepository.new
   end
 
   def create_room(attributes = {})

@@ -1,11 +1,11 @@
-class EstimationRoomRepository < Hanami::Repository
-  def initialize(story_repository: EstimationStoryRepository.new)
+class RoomRepository < Hanami::Repository
+  def initialize(story_repository: StoryRepository.new)
     super()
     @stories = story_repository
   end
 
   def find_by_admin_uuid(admin_uuid)
-    room = estimation_rooms.where(admin_uuid: admin_uuid).one
+    room = rooms.where(admin_uuid: admin_uuid).one
 
     with_stories(room)
   end

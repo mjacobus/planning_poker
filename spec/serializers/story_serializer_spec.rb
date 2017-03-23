@@ -1,6 +1,6 @@
-RSpec.describe EstimationStorySerializer do
+RSpec.describe StorySerializer do
   let(:factory) { TestFactory.new }
-  let(:story) { EstimationStory.new(attributes) }
+  let(:story) { Story.new(attributes) }
   let(:attributes) { factory.attributes_for_story }
 
   subject { described_class.new(story) }
