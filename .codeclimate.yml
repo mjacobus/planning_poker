@@ -1,0 +1,11 @@
+engines:
+  reek:
+    enabled: true
+  rubocop:
+    enabled: true
+  brakeman:
+    enabled: true
+
+ratings:
+  paths:
+    - "**.rb"
