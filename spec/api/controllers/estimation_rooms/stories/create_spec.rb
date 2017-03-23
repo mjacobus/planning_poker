@@ -13,29 +13,11 @@ RSpec.describe Api::Controllers::EstimationRooms::Stories::Create do
   end
 
   let(:story) do
-    double(
-      id: 'the id',
-      room_id: 'the room id',
-      url: 'the url',
-      name: 'the name',
-      description: 'the description',
-      estimation: nil,
-      rounds: []
-    )
+    Story.new(factory.attributes_for_story)
   end
 
   let(:json_response) do
-    {
-      estimation_story: {
-        id: 'the id',
-        room_id: 'the room id',
-        url: 'the url',
-        name: 'the name',
-        description: 'the description',
-        estimation: nil,
-        rounds: []
-      }
-    }
+    StorySerializer.new(story, :estimation_story).serialize
   end
 
   subject do

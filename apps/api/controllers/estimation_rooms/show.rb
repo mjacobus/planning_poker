@@ -1,12 +1,9 @@
 module Api::Controllers::EstimationRooms
-  class Show
+  class Show < AdminRoom
     include Api::Action
 
     def call(params)
-      admin_uuid = params[:admin_uuid]
-
-      room = RoomService.new.find_by_admin_uuid!(admin_uuid)
-
+      room = admin_room(params[:admin_uuid])
       serializer = RoomForAdminsSerializer.new(room, :estimation_room)
       json_response(serializer)
     end
