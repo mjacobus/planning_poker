@@ -1,0 +1,12 @@
+language: ruby
+sudo: false
+cache: bundler
+rvm:
+  - 2.4.0
+services:
+  - mysql
+before_install:
+
+before_script:
+  - bundle exec hanami db prepare
+  - bundle exec hanami db migrate
