@@ -1,10 +1,11 @@
+# frozen_string_literal: true
 class TestFactory
   def initialize
     @seq = 0
   end
 
   def seq
-    @seq = @seq+1
+    @seq += 1
   end
 
   def rooms
@@ -20,7 +21,7 @@ class TestFactory
       :name,
       :description,
       :admin_uuid,
-      :voting_uuid,
+      :voting_uuid
     ).merge(attributes)
 
     rooms.create(attributes)
@@ -30,7 +31,7 @@ class TestFactory
     attributes = fake_attributes(
       :name,
       :description,
-      :url,
+      :url
     ).merge(attributes)
 
     stories.create(attributes)
@@ -44,5 +45,15 @@ class TestFactory
         hash[attribute] = "#{attribute} #{seq}"
       end
     end
+  end
+
+  def attributes_for_story(attributes = {})
+    fake_attributes(
+      :name,
+      :description,
+    ).merge(id: seq,
+           room_id: seq,
+           created_at: Time.now,
+           updated_at: Time.now).merge(attributes)
   end
 end
