@@ -51,6 +51,9 @@ class TestFactory
     fake_attributes(
       :name,
       :description,
+      :url,
+      :status,
+      :estimation,
     ).merge(id: seq,
            room_id: seq,
            created_at: Time.now,
