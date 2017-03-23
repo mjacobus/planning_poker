@@ -59,24 +59,6 @@ export function getRoomSuccess(payload) {
   };
 }
 
-export function createStoryStart() {
-  return {
-    type: constants.CREATE_STORY_START
-  };
-}
-
-export function createStoryFailure() {
-  return {
-    type: constants.CREATE_STORY_FAILURE
-  };
-}
-
-export function createStorySuccess() {
-  return {
-    type: constants.CREATE_STORY_SUCCESS
-  };
-}
-
 function checkStatus(response) {
   if (response.status >= 200 && response.status < 300) {
     return response;
@@ -148,33 +130,6 @@ export function getRoom(adminUuid) {
     .catch((error) => {
       console.log('error', error);
       dispatch(getRoomFailure());
-    });
-  };
-}
-
-export function createStory(data) {
-  return function(dispatch) {
-    dispatch(createStoryStart());
-
-    return fetch('/api/estimation_story', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        'estimation_story': {
-          // 
-        }
-      })
-    })
-    .then(checkStatus)
-    .then((response) => response.json())
-    .then((response) => {
-      dispatch(createStorySuccess());
-    })
-    .catch((error) => {
-      console.log('error', error);
-      dispatch(createStoryFailure());
     });
   };
 }
