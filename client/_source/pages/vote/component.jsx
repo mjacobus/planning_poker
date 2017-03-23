@@ -3,6 +3,7 @@ import Heading from '../../atoms/heading';
 import Subheading from '../../atoms/subheading';
 import Page from '../../templates/page';
 import Results from '../../organisms/results';
+import CardEdge from '../../molecules/card-edge';
 import './index.scss';
 
 export default class Vote extends Component {
@@ -44,7 +45,12 @@ export default class Vote extends Component {
         <Heading text={ name } />
         <Subheading className="vote__subheading" text={ description } />
         {votesCompleted ? (
-          <Results users={ users } />
+          <div>
+            <CardEdge users={ ['aas'] } estimation={ '8' } edge="upper" />
+            <CardEdge users={ ['aas', 'asas'] } estimation={ '1' } edge="lower" />
+            <hr className="vote__hr" />
+            <Results users={ users } />
+          </div>
         ) : (
           <div>
             <hr className="vote__hr" />

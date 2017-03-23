@@ -1,0 +1,17 @@
+@import "../../_frame/config";
+
+.card-edge {
+  color: $color--light;
+}
+
+.card-edge--lower {
+  background-color: $color--progress;
+}
+
+.card-edge--upper {
+  background-color: $color--done;
+}
+
+.card-edge__button {
+  color: $color--light;
+}

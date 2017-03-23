@@ -13,7 +13,7 @@ export default class Card extends Component {
         <ul className="card__users">
           {users.join(', ')}
         </ul>
-        <Button text="Select as final size" className="card__button" onClick={ this.onCloseClick } />
+        <Button text="Select as final size" className="card__button" onClick={ this.onButtonClick } />
       </li>
     );
   }
