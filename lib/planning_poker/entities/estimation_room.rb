@@ -7,5 +7,10 @@ class EstimationRoom < Hanami::Entity
     attribute :voting_uuid, Types::String
     attribute :created_at,  Types::Time
     attribute :updated_at,  Types::Time
+    attribute :stories,     Types::Array
+  end
+
+  def with_stories(stories)
+    self.class.new(attributes.merge(stories: stories))
   end
 end

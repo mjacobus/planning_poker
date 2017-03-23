@@ -19,7 +19,8 @@ RSpec.describe EstimationRoomRepository do
       expect(admin_room.admin_uuid).to eq room.admin_uuid
 
       expect(admin_room).to respond_to(:stories)
-      expect(admin_room.stories.length).to be(2)
+      expect(admin_room.stories.count).to be(2)
+      expect(admin_room.stories.first).to eq(story1)
     end
   end
 end
