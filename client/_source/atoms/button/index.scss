@@ -10,6 +10,15 @@
   padding: 0 30px;
   user-select: none;
   white-space: nowrap;
+  text-align: center;
+  position: relative;
+}
+
+.button__busy {
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  left: 50%;
 }
 
 .button--primary {
@@ -21,4 +30,12 @@
   background-color: transparent;
   color: $color--primary;
   padding: 0;
+}
+
+.button--pending .button__text {
+  opacity: 0;
+}
+
+.button--pending .button__busy {
+  opacity: 1;
 }
