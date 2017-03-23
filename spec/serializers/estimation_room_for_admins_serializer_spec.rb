@@ -8,7 +8,7 @@ RSpec.describe EstimationRoomForAdminsSerializer do
       :voting_uuid,
       :created_at,
       :updated_at
-    )
+    ).merge(stories: [])
   end
 
   let(:room) { double(attributes) }
