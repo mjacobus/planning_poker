@@ -1,5 +1,4 @@
 RSpec.describe StorySerializer do
-  let(:factory) { TestFactory.new }
   let(:story) { Story.new(attributes) }
   let(:attributes) { factory.attributes_for_story }
 

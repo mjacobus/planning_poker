@@ -1,7 +1,6 @@
 require_relative '../../../../apps/api/controllers/estimation_rooms/show'
 
 RSpec.describe Api::Controllers::EstimationRooms::Show do
-  let(:factory) { TestFactory.new }
   let(:action) { described_class.new }
   let(:params) { Hash[admin_uuid: 'the_admin_uuid'] }
   let(:room) { factory.create_room(admin_uuid: 'the_admin_uuid') }
