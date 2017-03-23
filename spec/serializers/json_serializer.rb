@@ -1,4 +1,4 @@
-RSpec.describe JsonSerializers::EntitySerializer do
+RSpec.describe EntitySerializer do
   let(:described_class) do
     Class.new(described_class) do
       protected
@@ -13,10 +13,6 @@ RSpec.describe JsonSerializers::EntitySerializer do
   let(:entity) { double(attributes) }
 
   subject { described_class.new(entity) }
-
-  it 'extends JsonSerializers::EntitySerializer' do
-    expect(subject).to be_a(JsonSerializers::EntitySerializer)
-  end
 
   describe '#serialize' do
     describe 'with no parent key' do

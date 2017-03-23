@@ -20,7 +20,7 @@ RSpec.describe Api::Controllers::Sessions::Create do
       allow_any_instance_of(UserService).to receive(:create_by_name)
         .with(username).and_return(user)
 
-      stub_serializer(JsonSerializers::User, user, :user) { json }
+      stub_serializer(UserSerializer, user, :user) { json }
 
       subject
     end
@@ -45,7 +45,7 @@ RSpec.describe Api::Controllers::Sessions::Create do
   context 'on an invalid request' do
     before do
       exception = ValidationError.new('foo')
-      stub_serializer(JsonSerializers::ExceptionSerializer, exception) { json }
+      stub_serializer(ExceptionSerializer, exception) { json }
 
       allow_any_instance_of(UserService).to receive(:create_by_name)
         .with(username).and_raise(exception)

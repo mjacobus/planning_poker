@@ -1,11 +1,11 @@
-RSpec.describe JsonSerializers::User do
+RSpec.describe UserSerializer do
   let(:attributes) { fake_attributes(:id, :name) }
   let(:user) { double(attributes) }
 
   subject { described_class.new(user) }
 
-  it 'extends JsonSerializers::EntitySerializer' do
-    expect(subject).to be_a(JsonSerializers::EntitySerializer)
+  it 'extends EntitySerializer' do
+    expect(subject).to be_a(EntitySerializer)
   end
 
   describe '#serialize' do
