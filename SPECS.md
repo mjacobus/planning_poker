@@ -65,13 +65,13 @@ Response:
 
 
 ```ruby
-moderator_service = ModeratorService.new(room)
-moderator_service.set_topic(story)         # set current estimation topic for the room
-moderator_service.current_topic            # get current estimation topic for the room
-moderator_service.reset_estimation         # current estimation/story
-moderator_service.assign_estimation(value) # define the estimation value for the current topic
-moderator_service.assign_voter(user)       # assign voter to current topic
-moderator_service.unassign_voter(user)     # unassign voter for current topic
+moderation_service = ModerationService.new(room)
+moderation_service.set_topic(story)         # set current estimation topic for the room
+moderation_service.current_topic            # get current estimation topic for the room
+moderation_service.reset_estimation         # current estimation/story
+moderation_service.assign_estimation(value) # define the estimation value for the current topic
+moderation_service.assign_voter(user)       # assign voter to current topic
+moderation_service.unassign_voter(user)     # unassign voter for current topic
 
 participant = UserEstimationService.new(room, current_user, story)
 participant.estimate(value)                # set participant estimation
