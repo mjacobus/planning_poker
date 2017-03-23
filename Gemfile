@@ -22,6 +22,8 @@ group :test, :development do
   gem 'pry'
   gem 'rubocop'
   gem 'reek'
+  gem 'coveralls', require: false
+  gem 'simplecov'
 end
 
 group :test do
