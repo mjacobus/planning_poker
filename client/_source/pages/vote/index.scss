@@ -22,9 +22,14 @@
 }
 
 .vote__subheading {
-  border-bottom: 1px solid #BFBFBF;
   margin-bottom: 50px;
-  padding-bottom: 50px;
+}
+
+.vote__hr {
+  margin-bottom: 50px;
+  background-color: #BFBFBF;
+  height: 1px;
+  width: 100%;
 }
 
 .vote__vote-now {

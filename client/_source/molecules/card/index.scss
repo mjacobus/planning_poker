@@ -1,0 +1,35 @@
+.card {
+  width: 180px;
+  border: 1px solid #979797;
+  display: inline-block;
+  margin: 10px;
+  padding: 25px 25px 55px 25px;
+  position: relative;
+}
+
+.card__estimation {
+  font-size: 4.571rem;
+}
+
+.card__users {
+  margin-top: 30px;
+  position: relative;
+
+  &:before {
+    content: " ";
+    position: absolute;
+    width: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    top: -15px;
+    height: 1px;
+    background-color: #000;
+  }
+}
+
+.card__button {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}

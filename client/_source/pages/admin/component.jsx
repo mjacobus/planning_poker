@@ -28,6 +28,8 @@ export default class Admin extends Component {
 
   componentDidMount() {
     this.props.getRoom(this.props.params.id);
+
+    // get users every X seconds
   }
 
   onAddStoryClick() {
