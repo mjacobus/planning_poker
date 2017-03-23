@@ -5,11 +5,15 @@ class EstimationRoomRepository < Hanami::Repository
   end
 
   def find_by_admin_uuid(admin_uuid)
-    estimation_rooms.where(admin_uuid: admin_uuid).one
+    room = estimation_rooms.where(admin_uuid: admin_uuid).one
+
+    with_stories(room)
   end
 
   protected
 
   def with_stories(room)
+    stories = @stories.belonging_to_room(room)
+    room.with_stories(stories)
   end
 end
