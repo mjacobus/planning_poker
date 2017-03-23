@@ -6,5 +6,10 @@ export default {
     pending: true,
     adminUuid: '',
     votingUuid: ''
+  },
+  vote: {
+    name: '',
+    description: '',
+    users: []
   }
 };

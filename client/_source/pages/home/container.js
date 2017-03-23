@@ -24,7 +24,6 @@ export const mapDispatchToProps = function(dispatch) {
   };
 };
 
-
 const Container = connect(
   mapStateToProps,
   mapDispatchToProps

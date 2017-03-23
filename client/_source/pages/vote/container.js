@@ -4,23 +4,16 @@ import { actions } from '../../_state/room';
 
 export const mapStateToProps = function(state) {
   return {
-    name: state.room.name,
-    description: state.room.description,
-    adminUuid: state.room.adminUuid,
-    votingUuid: state.room.votingUuid,
-    stories: state.room.stories,
-    pending: state.room.pending
+    roomName: state.room.name,
+    name: state.vote.name,
+    description: state.vote.description,
+    users: state.vote.users
   };
 };
 
 export const mapDispatchToProps = function(dispatch) {
   return {
-    createStory: (data) => {
-      dispatch(actions.createStory(data));
-    },
-    getRoom: (data) => {
-      dispatch(actions.getRoom(data));
-    }
+    
   };
 };
 

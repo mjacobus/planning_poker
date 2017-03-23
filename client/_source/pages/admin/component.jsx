@@ -44,9 +44,7 @@ export default class Admin extends Component {
   handleSubmit(event) {
     event.preventDefault();
 
-    this.setState({
-      isOpen: false
-    });
+    // redirect?
   }
 
   handleNameChange(event) {
