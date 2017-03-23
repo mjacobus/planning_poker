@@ -51,18 +51,29 @@ Response:
   voting_uuid: string
 ```
 
-Feature:
+## Features:
   - User logs in
   - User create room
   - User adds stories to room
   - User fetches room with stories
+  - *TODO*
+    - User joins room for voting
+    - User votes on story
+    - Moderator starts voting
+    - Moderator finishes voting
+    - Can round story result
 
-# TODO
 
-  - User joins room for voting
-  - User votes on story
-  - Moderator starts voting
-  - Moderator finishes voting
-  - Can round story result
+```ruby
+ModeratorService.new.set_current_story(story)
+ModeratorService.new.reset_current_estimation
+ModeratorService.new.set_current_estimation_value(number)
+ModeratorService.new.assign_voter(user)
+ModeratorService.new.unassign_voter(user)
 
-``
+EstimationService.new(room).get_current_topic_status(number)
+
+participant = ParticipantService.new(room, current_user, story)
+participant.estimate(value)
+participant.revoke_estimation
+```
