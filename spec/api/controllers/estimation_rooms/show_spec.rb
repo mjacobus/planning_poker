@@ -14,7 +14,7 @@ RSpec.describe Api::Controllers::EstimationRooms::Show do
   describe 'on a successful request' do
     before do
       room
-      stub_serializer(EstimationRoomForAdminsSerializer, room, :estimation_room) do
+      stub_serializer(RoomForAdminsSerializer, room, :estimation_room) do
         json_body
       end
     end

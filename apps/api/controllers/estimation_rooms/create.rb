@@ -3,9 +3,9 @@ module Api::Controllers::EstimationRooms
     include Api::Action
 
     def call(params)
-      room = EstimationRoomService.new.create(params[:estimation_room])
+      room = RoomService.new.create(params[:estimation_room])
 
-      serializer = EstimationRoomForAdminsSerializer.new(room, :estimation_room)
+      serializer = RoomForAdminsSerializer.new(room, :estimation_room)
       json_response(serializer)
     end
   end
