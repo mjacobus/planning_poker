@@ -35,4 +35,6 @@ Response:
   name: string
   description: string
   stories: array
+  admin_uuid: string
+  voting_uuid: string
 ```
