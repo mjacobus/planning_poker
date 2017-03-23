@@ -19,7 +19,7 @@ RSpec.describe Api::Controllers::EstimationRooms::Stories::Create do
       url: 'the url',
       name: 'the name',
       description: 'the description',
-      final_estimation: nil,
+      estimation: nil,
       rounds: []
     )
   end
@@ -32,7 +32,7 @@ RSpec.describe Api::Controllers::EstimationRooms::Stories::Create do
         url: 'the url',
         name: 'the name',
         description: 'the description',
-        final_estimation: nil,
+        estimation: nil,
         rounds: []
       }
     }

@@ -24,7 +24,7 @@ module Api::Controllers::EstimationRooms::Stories
           url: story.url,
           name: story.name,
           description: story.description,
-          final_estimation: story.final_estimation,
+          estimation: story.estimation,
           rounds: []
         }
       }
