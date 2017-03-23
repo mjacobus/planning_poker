@@ -4,7 +4,7 @@ Planning Poker
 Planning poker App for remote teams
 
 [![Build Status](https://travis-ci.org/mjacobus/planning_poker.svg?branch=master)](https://travis-ci.org/mjacobus/planning_poker)
-[![Code Coverage](https://scrutinizer-ci.com/g/mjacobus/planning_poker/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/mjacobus/planning_poker/?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/mjacobus/planning_poker/badge.svg?branch=master)](https://coveralls.io/github/mjacobus/planning_poker?branch=master)
 [![Code Climate](https://codeclimate.com/github/mjacobus/planning_poker/badges/gpa.svg)](https://codeclimate.com/github/mjacobus/planning_poker)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/mjacobus/planning_poker/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/mjacobus/planning_poker/?branch=master)
 [![Dependency Status](https://gemnasium.com/badges/github.com/mjacobus/planning_poker.svg)](https://gemnasium.com/github.com/mjacobus/planning_poker)
