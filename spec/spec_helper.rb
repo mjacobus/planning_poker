@@ -153,3 +153,15 @@ end
 def parse_json(string)
   JSON.parse(string, symbolize_names: true)
 end
+
+def stub_serializer(serializer, *arguments)
+  stubbed = allow(serializer).to receive(:new).with(*arguments)
+
+  return_value = { stubbed: serializer.class.to_s }.to_json
+
+  if block_given?
+    return_value = yield
+  end
+
+  stubbed.and_return(return_value)
+end

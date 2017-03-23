@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require_relative '../../../../apps/api/controllers/sessions/create'
 
 RSpec.describe Api::Controllers::Sessions::Create do
@@ -12,11 +13,14 @@ RSpec.describe Api::Controllers::Sessions::Create do
   let(:status) { response[0] }
   let(:headers) { response[1] }
   let(:body) { response[2][0] }
+  let(:json) { { "foo": 'bar' } }
 
   context 'on a valid request' do
     before do
       allow_any_instance_of(UserService).to receive(:create_by_name)
         .with(username).and_return(user)
+
+      stub_serializer(JsonSerializers::User, user, :user) { json }
 
       subject
     end
@@ -26,14 +30,11 @@ RSpec.describe Api::Controllers::Sessions::Create do
     end
 
     it 'returns the user id and name as a json' do
-      user = { id: 'theId', name: username }
-      json = { user: user }
-
       expect(subject).to have_json_body(json)
     end
 
     it 'content type is json' do
-      expect(headers["Content-Type"]).to eq 'application/json; charset=utf-8'
+      expect(headers['Content-Type']).to eq 'application/json; charset=utf-8'
     end
 
     it 'logs user in' do
@@ -43,8 +44,11 @@ RSpec.describe Api::Controllers::Sessions::Create do
 
   context 'on an invalid request' do
     before do
+      exception = ValidationError.new('foo')
+      stub_serializer(JsonSerializers::ExceptionSerializer, exception) { json }
+
       allow_any_instance_of(UserService).to receive(:create_by_name)
-        .with(username).and_raise(ValidationError, 'error message')
+        .with(username).and_raise(exception)
 
       subject
     end
@@ -54,9 +58,7 @@ RSpec.describe Api::Controllers::Sessions::Create do
     end
 
     it 'shows message' do
-      json = { message: 'error message' }.to_json
-
-      expect(body).to eq json
+      expect(subject).to have_json_body(json)
     end
   end
 end

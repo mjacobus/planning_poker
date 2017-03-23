@@ -10,6 +10,11 @@ RSpec::Matchers.define :have_json_body do |expected|
   match do |response|
     response = response[2][0]
     as_hash = JSON.parse(response, symbolize_names: true)
+
+    if expected.class == String
+      expected = JSON.parse(response, symbolize_names: true)
+    end
+
     as_hash == expected
   end
 
