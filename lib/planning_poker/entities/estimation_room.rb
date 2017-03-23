@@ -7,7 +7,7 @@ class EstimationRoom < Hanami::Entity
     attribute :voting_uuid, Types::String
     attribute :created_at,  Types::Time
     attribute :updated_at,  Types::Time
-    attribute :stories,     Types::Array
+    attribute :stories,     Types::Array.default([])
   end
 
   def with_stories(stories)
