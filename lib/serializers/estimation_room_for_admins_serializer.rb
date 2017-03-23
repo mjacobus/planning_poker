@@ -15,8 +15,10 @@ class EstimationRoomForAdminsSerializer < EntitySerializer
   protected
 
   def stories_to_h(stories)
-    [].tap do |story|
-      EstimationStorySerializer.new(story).to_h
+    [].tap do |array|
+      stories.each do |story|
+        array << EstimationStorySerializer.new(story).to_h
+      end
     end
   end
 end
