@@ -141,3 +141,15 @@ def fake_attributes(*keys)
     end
   end
 end
+
+def synbolize_keys(hash)
+  symbolized = {}.tap do |h|
+    hash.each do |key, value|
+      h[key.to_sym] = value
+    end
+  end
+end
+
+def parse_json(string)
+  JSON.parse(string, symbolize_names: true)
+end

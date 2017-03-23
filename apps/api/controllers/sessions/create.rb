@@ -7,9 +7,9 @@ module Api::Controllers::Sessions
         username = params[:user][:name]
         user = UserService.new.create_by_name(username)
         user_session.login(user)
-        json_response({id: user.id, name: user.name})
+        json_response(JsonSerializers::User.new(user, :user))
       rescue Exception  => e
-        json_response({ message: e.message }, 422)
+        json_response(JsonSerializers::ExceptionSerializer.new(e), 422)
       end
     end
   end

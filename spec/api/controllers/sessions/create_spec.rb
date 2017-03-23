@@ -26,9 +26,10 @@ RSpec.describe Api::Controllers::Sessions::Create do
     end
 
     it 'returns the user id and name as a json' do
-      json = { id: 'theId', name: username }.to_json
+      user = { id: 'theId', name: username }
+      json = { user: user }
 
-      expect(body).to eq json
+      expect(subject).to have_json_body(json)
     end
 
     it 'content type is json' do
