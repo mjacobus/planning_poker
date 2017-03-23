@@ -12,3 +12,4 @@ get '/sessions/destroy', to: 'sessions#destroy'
 # stories
 #
 post '/estimation_rooms/:admin_uuid/stories', to: 'estimation_rooms/stories#create'
+get '/estimation_rooms/:admin_uuid', to: 'estimation_rooms#show'
