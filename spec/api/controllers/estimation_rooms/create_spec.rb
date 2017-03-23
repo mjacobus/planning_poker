@@ -12,7 +12,8 @@ RSpec.describe Api::Controllers::EstimationRooms::Create do
       admin_uuid:   'some uudi',
       voting_uuid:  'some uudi2',
       created_at:   'some created at',
-      updated_at:   'some updated at'
+      updated_at:   'some updated at',
+      stories: []
     }
   end
 
