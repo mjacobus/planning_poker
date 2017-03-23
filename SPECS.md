@@ -1,15 +1,16 @@
 Project Specifications/Ideas
 ----------------------
 
+
 ```yml
-Estimation::Room:
+Room:
   admin_uuid: string
   voting_uuid: string
   name: string
   description: string
   stories: []
 
-Estimation::Story:
+Story:
   room_id:
   url: string
   name: string
@@ -18,11 +19,21 @@ Estimation::Story:
   status: string
   rounds: []
 
-Estimation::Round:
+Participant:
+  role: string [voter, observer]
   user_id: integer
   story_id: integer
+
+EstimationRound:
+  id: integer
+  uuid: string
+  story_id: integer
+  sequence: integer
+
+Estimation:
+  round_id:
+  user_id:
   estimation: string
-  status: string (in_progress, finished)
 
 Estimation::User:
   name: string
@@ -35,7 +46,23 @@ Request:
 Response:
   name: string
   description: string
-  stories: array
+  stories: array
   admin_uuid: string
   voting_uuid: string
 ```
+
+Feature:
+  - User logs in
+  - User create room
+  - User adds stories to room
+  - User fetches room with stories
+
+# TODO
+
+  - User joins room for voting
+  - User votes on story
+  - Moderator starts voting
+  - Moderator finishes voting
+  - Can round story result
+
+``
