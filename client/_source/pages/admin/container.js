@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import Component from './component.jsx';
-import { actions } from '../../_state/room';
+import { actions as room } from '../../_state/room';
+import { actions as vote } from '../../_state/vote';
 
 export const mapStateToProps = function(state) {
   return {
@@ -9,17 +10,18 @@ export const mapStateToProps = function(state) {
     adminUuid: state.room.adminUuid,
     votingUuid: state.room.votingUuid,
     stories: state.room.stories,
-    pending: state.room.pending
+    pending: state.room.pending,
+    storyPending: state.vote.pending
   };
 };
 
 export const mapDispatchToProps = function(dispatch) {
   return {
     createStory: (data) => {
-      dispatch(actions.createStory(data));
+      dispatch(vote.createStory(data));
     },
     getRoom: (data) => {
-      dispatch(actions.getRoom(data));
+      dispatch(room.getRoom(data));
     }
   };
 };

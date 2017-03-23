@@ -15,7 +15,8 @@ export default class Admin extends Component {
     this.state = {
       isOpen: false,
       storyName: '',
-      storyDesc: ''
+      storyDesc: '',
+      adminUuid: this.props.params.id
     };
 
     this.onAddStoryClick = this.onAddStoryClick.bind(this);
@@ -44,7 +45,11 @@ export default class Admin extends Component {
   handleSubmit(event) {
     event.preventDefault();
 
-    // redirect?
+    this.props.createStory({
+      adminUuid: this.state.adminUuid,
+      description: this.state.storyDesc,
+      name: this.state.storyName
+    });
   }
 
   handleNameChange(event) {
@@ -60,8 +65,8 @@ export default class Admin extends Component {
   }
 
   render() {
-    let { name, description, votingUuid, stories, pending } = this.props;
-    let adminUuid = this.props.adminUuid || this.props.params.id;
+    let { name, description, votingUuid, stories, pending, storyPending } = this.props;
+    let adminUuid = this.props.adminUuid || this.state.adminUuid;
     const adminUrl = `${window.location.origin}/room/${this.props.adminUuid}/admin`;
     const votingUrl = `${window.location.origin}/room/${this.props.votingUuid}`;
     const isOpen = this.state.isOpen;
@@ -107,7 +112,7 @@ export default class Admin extends Component {
                   <Input required type="text" value={ this.state.storyName } onChange={ this.handleNameChange } />
                   <Label text="Description and notes" />
                   <Input type="text" value={ this.state.storyDesc } onChange={ this.handleDescChange } />
-                  <Button type="submit" className="admin__start" text="Start planning round" />
+                  <Button type="submit" className="admin__start" text="Start planning round" pending={ storyPending } />
                   <Button text="Close" rank={ 2 } onClick={ this.onCloseClick } />
                 </form>
               ) : <Button className="admin__add" text="Add a new story" onClick={ this.onAddStoryClick } />}
@@ -135,5 +140,6 @@ Admin.propTypes = {
   getRoom: PropTypes.func.isRequired,
   params: PropTypes.object.isRequired,
   stories: PropTypes.array.isRequired,
-  pending: PropTypes.bool.isRequired
+  pending: PropTypes.bool.isRequired,
+  storyPending: PropTypes.bool.isRequired
 };

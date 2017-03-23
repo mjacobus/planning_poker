@@ -10,6 +10,7 @@ export default {
   vote: {
     name: '',
     description: '',
-    users: []
+    users: [],
+    pending: false
   }
 };
