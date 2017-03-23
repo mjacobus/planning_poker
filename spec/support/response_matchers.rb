@@ -20,7 +20,6 @@ RSpec::Matchers.define :be_json do
   match do |response|
     expected =  'application/json; charset=utf-8'
     actual = response[1]["Content-Type"]
-    puts actual
     actual == expected
   end
 
