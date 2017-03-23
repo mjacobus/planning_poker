@@ -1,9 +1,9 @@
 RSpec.describe EntitySerializer do
   let(:described_class) do
-    Class.new(described_class) do
+    Class.new(EntitySerializer) do
       protected
 
-      def to_hash
+      def to_h
         { id: 'the id', name: 'the name' }
       end
     end
