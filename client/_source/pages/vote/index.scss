@@ -1,3 +1,64 @@
+@import "../../_frame/config";
+
 .vote {
-  
+  max-width: 820px;
+}
+
+.vote__room {
+  color: #9B9B9B;
+  position: relative;
+  margin-bottom: 25px;
+
+  &:after {
+    content: " ";
+    position: absolute;
+    width: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -10px;
+    height: 1px;
+    background-color: #000;
+  }
+}
+
+.vote__subheading {
+  border-bottom: 1px solid #BFBFBF;
+  margin-bottom: 50px;
+  padding-bottom: 50px;
+}
+
+.vote__vote-now {
+  font-weight: bold;
+  color: $color--primary;
+}
+
+.vote__users {
+  list-style: none;
+  margin-top: 40px;
+}
+
+.vote__user {
+  margin: 0 5px;
+  display: inline-block;
+  position: relative;
+
+  &:after {
+    content: ",";
+    position: absolute;
+    top: 0;
+    height: 100%;
+    right: -5px;
+  }
+
+  &:last-child:after {
+    content: "";
+  }
+}
+
+.vote__user--finished {
+  color: $color--done;
+}
+
+.vote__user--in_progress {
+  color: $color--progress;
 }
