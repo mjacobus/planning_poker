@@ -3,7 +3,7 @@ export default {
     name: '',
     description: '',
     stories: [],
-    pending: true,
+    pending: false,
     adminUuid: '',
     votingUuid: ''
   },

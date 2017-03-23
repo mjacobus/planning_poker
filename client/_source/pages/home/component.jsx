@@ -34,16 +34,18 @@ export default class Home extends Component {
   }
 
   render() {
+    const { name, description, pending } = this.props;
+
     return (
       <Page className="home">
         <Heading text="Welcome to smart planning poker" />
         <Subheading text="Create a room, share it with your team and start your planning poker" />
         <form className="form" onSubmit={ this.handleSubmit }>
           <Label text="Room Name" />
-          <Input required type="text" value={ this.props.name } onChange={ this.handleNameChange } />
+          <Input required type="text" value={ name } onChange={ this.handleNameChange } />
           <Label text="Description and notes" />
-          <Input required type="text" value={ this.props.description } onChange={ this.handleDescChange } />
-          <Button type="submit" text="Create a new room" />
+          <Input required type="text" value={ description } onChange={ this.handleDescChange } />
+          <Button type="submit" text="Create a new room" pending={ pending } />
         </form>
       </Page>
     );
@@ -55,5 +57,6 @@ Home.propTypes = {
   description: PropTypes.string.isRequired,
   setRoomName: PropTypes.func.isRequired,
   setRoomDesc: PropTypes.func.isRequired,
-  createRoom: PropTypes.func.isRequired
+  createRoom: PropTypes.func.isRequired,
+  pending: PropTypes.bool.isRequired
 };
