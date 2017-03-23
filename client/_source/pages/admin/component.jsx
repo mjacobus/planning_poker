@@ -77,11 +77,11 @@ export default class Admin extends Component {
       stories = [{
         name: 'Test story',
         description: 'Test description',
-        finalEstimation: 5
+        estimation: 5
       }, {
         name: 'Test story 2',
         description: 'Test description 2',
-        finalEstimation: 10
+        estimation: 10
       }];
     }
 
@@ -109,8 +109,8 @@ export default class Admin extends Component {
                   <Input required type="text" value={ this.state.storyName } onChange={ this.handleNameChange } />
                   <Label text="Description and notes" />
                   <Input type="text" value={ this.state.storyDesc } onChange={ this.handleDescChange } />
-                  <Button type="submit" text="Start planning round" />
-                  <Button text="Close" rank={ 2 } className="admin__close" onClick={ this.onCloseClick } />
+                  <Button type="submit" className="admin__start" text="Start planning round" />
+                  <Button text="Close" rank={ 2 } onClick={ this.onCloseClick } />
                 </form>
               ) : <Button className="admin__add" text="Add a new story" onClick={ this.onAddStoryClick } />}
               {stories.map((props, index) => <Story key={ index } { ...props } />)}
