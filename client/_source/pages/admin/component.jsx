@@ -15,8 +15,7 @@ export default class Admin extends Component {
     this.state = {
       isOpen: false,
       storyName: '',
-      storyDesc: '',
-      adminUuid: this.props.params.id
+      storyDesc: ''
     };
 
     this.onAddStoryClick = this.onAddStoryClick.bind(this);
@@ -24,6 +23,10 @@ export default class Admin extends Component {
     this.handleNameChange = this.handleNameChange.bind(this);
     this.handleDescChange = this.handleDescChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.getRoom(this.props.params.id);
   }
 
   onAddStoryClick() {
@@ -44,10 +47,6 @@ export default class Admin extends Component {
     this.setState({
       isOpen: false
     });
-
-    /* this.props.createStory({
-      adminUuid: this.state.adminUuid
-    });*/
   }
 
   handleNameChange(event) {
@@ -62,17 +61,15 @@ export default class Admin extends Component {
     });
   }
 
-  componentDidMount() {
-    this.props.getRoom(this.props.params.id);
-    
-    return;
+  render() {
+    let { name, description, votingUuid, stories, pending } = this.props;
+    let adminUuid = this.props.adminUuid || this.props.params.id;
+    const adminUrl = `${window.location.origin}/room/${this.props.adminUuid}/admin`;
+    const votingUrl = `${window.location.origin}/room/${this.props.votingUuid}`;
+    const isOpen = this.state.isOpen;
 
-    let adminUuid = '';
-
+    // for testing
     if (!adminUuid || !votingUuid) {
-      
-      
-      // for testing
       adminUuid = true;
       votingUuid = true;
       name = 'Test name';
@@ -87,20 +84,13 @@ export default class Admin extends Component {
         finalEstimation: 10
       }];
     }
-  }
-
-  render() {
-    const { name, description, adminUuid, votingUuid, stories, pending } = this.props;
-    const adminUrl = `${window.location.origin}/room/${this.props.adminUuid}/admin`;
-    const votingUrl = `${window.location.origin}/room/${this.props.votingUuid}`;
-    const isOpen = this.state.isOpen;
 
     return (
       <div>
         {pending && (
           <div>{'pending'}</div>
         )}
-        {adminUuid && votingUuid ? (
+        {!pending && adminUuid && votingUuid && (
           <div>
             <div className="links">
               <div className="links__content">
@@ -126,7 +116,8 @@ export default class Admin extends Component {
               {stories.map((props, index) => <Story key={ index } { ...props } />)}
             </Page>
           </div>
-        ) : (
+        )}
+        {!pending && (!adminUuid || !votingUuid) && (
           <Page className="admin">
             <Heading text="This is not the room you are looking for" />
             <Subheading text="Copied a wrong link?" />

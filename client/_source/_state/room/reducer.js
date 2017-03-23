@@ -44,7 +44,9 @@ const reducer = (state = {}, action) => {
         pending: false,
         name: action.name,
         description: action.description,
-        stories: action.stories
+        stories: action.stories,
+        adminUuid: action.adminUuid,
+        votingUuid: action.votingUuid
       });
 
     case constants.CREATE_STORY_START:

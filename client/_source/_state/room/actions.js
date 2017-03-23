@@ -53,7 +53,9 @@ export function getRoomSuccess(payload) {
     type: constants.GET_ROOM_SUCCESS,
     name: payload.name,
     description: payload.description,
-    stories: payload.stories
+    stories: payload.stories,
+    adminUuid: payload.adminUuid,
+    votingUuid: payload.votingUuid
   };
 }
 
@@ -138,7 +140,9 @@ export function getRoom(adminUuid) {
       dispatch(getRoomSuccess({
         name: responseData.name,
         description: responseData.description,
-        stories: responseData.stories
+        stories: responseData.stories,
+        adminUuid: responseData.admin_uuid,
+        votingUuid: responseData.voting_uuid
       }));
     })
     .catch((error) => {
