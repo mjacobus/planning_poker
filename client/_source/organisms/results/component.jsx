@@ -5,10 +5,12 @@ import './index.scss';
 export default class Results extends Component {
   getResults(results) {
     const resultsMarkup = [];
+    let index = 0;
 
     for (const i in results) {
       if (results.hasOwnProperty(i)) {
-        resultsMarkup.push(<Card estimation={ i } users={ results[i].users } />);
+        resultsMarkup.push(<Card key={ index } estimation={ i } users={ results[i].users } />);
+        index++;
       }
     }
 

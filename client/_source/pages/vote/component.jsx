@@ -41,7 +41,7 @@ export default class Vote extends Component {
     }, {
       name: 'Nico',
       estimation: 1,
-      status: 'in_progress'
+      status: 'finished'
     }, {
       name: 'Oliver',
       estimation: 8,
@@ -64,9 +64,11 @@ export default class Vote extends Component {
         <Subheading className="vote__subheading" text={ description } />
         {votesCompleted ? (
           <div>
-            <CardEdge users={ ['aas'] } estimation={ '8' } edge="upper" />
-            <CardEdge users={ ['aas', 'asas'] } estimation={ '1' } edge="lower" />
-            <hr className="vote__hr" />
+            <div className="vote__cards">
+              <CardEdge users={ ['aas'] } estimation={ '8' } edge="upper" />
+              <CardEdge users={ ['aas', 'asas'] } estimation={ '1' } edge="lower" />
+            </div>
+            <hr className="vote__hr vote__hr--completed" />
             <Results users={ users } />
           </div>
         ) : (

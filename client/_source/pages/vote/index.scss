@@ -32,6 +32,18 @@
   width: 100%;
 }
 
+.vote__hr--completed {
+  margin-bottom: 30px;
+}
+
+.vote__cards {
+  display: flex;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 0 15px;
+}
+
 .vote__vote-now {
   font-weight: bold;
   color: $color--primary;

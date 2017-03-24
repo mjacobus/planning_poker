@@ -2,16 +2,61 @@
 
 .card-edge {
   color: $color--light;
+  list-style: none;
+  max-width: 375px;
+  flex-grow: 1;
+  margin: 0 10px 20px 10px;
 }
 
-.card-edge--lower {
-  background-color: $color--progress;
+.card-edge__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 20px;
 }
 
 .card-edge--upper {
   background-color: $color--done;
 }
 
+.card-edge--lower {
+  background-color: $color--progress;
+}
+
+.card-edge__estimation {
+  font-size: 3.429rem;
+}
+
+.card-edge__label {
+  flex-grow: 1;
+  text-align: left;
+  padding-left: 15px;
+  text-transform: uppercase;
+  font-size: 0.7857rem;
+}
+
+.card-edge__inner-label {
+  width: 60px;
+  white-space: pre-wrap;
+  display: inline-block;
+}
+
 .card-edge__button {
   color: $color--light;
+  width: 65px;
+  white-space: pre-wrap;
+  line-height: 1.2;
+}
+
+.card-edge__users {
+  padding: 10px;
+  text-align: left;
+}
+
+.card-edge--upper .card-edge__users {
+  background-color: darken($color--done, 10%);
+}
+
+.card-edge--lower .card-edge__users {
+  background-color: darken($color--progress, 10%);
 }
