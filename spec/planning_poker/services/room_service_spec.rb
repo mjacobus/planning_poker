@@ -94,11 +94,11 @@ RSpec.describe RoomService do
       end
 
       specify 'new story has correct attributes' do
-        expect(subject.url).to eq('the url')
-        expect(subject.name).to eq('the name')
-        expect(subject.description).to eq('the description')
-        expect(subject.estimation).to eq('the estimation')
-        expect(subject.status).to eq('the status')
+        expect(subject.url).to eq(attributes[:url])
+        expect(subject.name).to eq(attributes[:name])
+        expect(subject.description).to eq(attributes[:description])
+        expect(subject.estimation).to eq(attributes[:estimation])
+        expect(subject.status).to eq(attributes[:status])
       end
     end
 

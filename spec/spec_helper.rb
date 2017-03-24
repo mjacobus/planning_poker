@@ -137,11 +137,7 @@ def require_lib_file(file)
 end
 
 def fake_attributes(*keys)
-  attributes = {}.tap do |attr|
-    keys.each do |key|
-      attr[key] = "the #{key}"
-    end
-  end
+  TestFactory.new.fake_attributes(*keys)
 end
 
 def synbolize_keys(hash)

@@ -1,6 +1,7 @@
 class UniqueId
   def initialize(value = nil)
-    @value = value || SecureRandom.uuid
+    @value = (value || SecureRandom.uuid).dup
+    freeze
   end
 
   def to_s

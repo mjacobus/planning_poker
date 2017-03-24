@@ -24,4 +24,14 @@ RSpec.describe UniqueId do
       expect(UniqueId.new('foo')).not_to eq(UniqueId.new('bar'))
     end
   end
+
+  specify 'it is immutable' do
+    value = 'foo'
+
+    id = UniqueId.new(value)
+
+    value.upcase!
+
+    expect(id.to_s).to eq('foo')
+  end
 end

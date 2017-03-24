@@ -4,7 +4,7 @@ RSpec.describe EntitySerializer do
       protected
 
       def to_h
-        { id: 'the id', name: 'the name' }
+        fake_attributes(:id, :name)
       end
     end
   end

@@ -8,6 +8,7 @@ Hanami::Model.migration do
       column :name, String
       column :description, String, length: 10_000
       column :estimation, String
+      column :current, TrueClass, default: false
       column :status, String
 
       column :created_at, DateTime, null: false

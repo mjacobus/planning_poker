@@ -17,6 +17,7 @@ get '/estimation_rooms/:admin_uuid', to: 'estimation_rooms#show'
 
 # Controlls
 #
+#   POST   /estimation_room/:admin_uuid/stories/:id/start  current_estimation#start
 #   POST   /estimation_room/:admin_uuid/current/start      current_estimation#start
 #   POST   /estimation_room/:admin_uuid/current/reset      current_estimation#reset
 #   PUT    /estimation_room/:admin_uuid/current/estimate   current_estimation#set_estimation
