@@ -40,6 +40,10 @@
   padding: 0;
 }
 
+.button--pending {
+  pointer-events: none;
+}
+
 .button--pending .button__text {
   opacity: 0;
 }

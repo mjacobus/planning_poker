@@ -6,6 +6,7 @@ import Results from '../../organisms/results';
 import CardEdge from '../../molecules/card-edge';
 import Spinner from '../../atoms/spinner';
 import Button from '../../atoms/button';
+import Modal from '../../organisms/modal';
 import './index.scss';
 
 export default class Vote extends Component {
@@ -15,6 +16,10 @@ export default class Vote extends Component {
     this.showSpinner = true;
     this.timer = null;
     this.onRestartClick = this.onRestartClick.bind(this);
+    this.state = {
+      saveModalOpen: false,
+      restartModalOpen: false
+    };
   }
 
   componentDidMount() {
@@ -28,7 +33,9 @@ export default class Vote extends Component {
   // don't update when no changes
 
   onRestartClick() {
-    // restart voting
+    this.setState({
+      restartModalOpen: true
+    });
   }
 
   fetchRoomLoop() {
@@ -125,6 +132,10 @@ export default class Vote extends Component {
                 <Results users={ users } />
                 <hr className="vote__hr vote__hr--completed" />
                 <Button text="Restart voting" className="vote__restart" rank={ 2 } onClick={ this.onRestartClick } />
+                <Modal open={ this.state.restartModalOpen } onClick={''}>
+                  <Heading text={ name } />
+                  <Subheading text={ description } />
+                </Modal>
               </div>
             ) : (
               <div>
