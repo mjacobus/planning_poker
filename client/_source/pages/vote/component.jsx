@@ -23,12 +23,45 @@ export default class Vote extends Component {
     window.clearTimeout(this.timer);
   }
 
+  // don't update when no changes
+
   fetchRoomLoop() {
     this.props.getRoom(this.props.params.id);
 
     this.timer = window.setTimeout(() => {
       this.fetchRoomLoop();
     }, 2000);
+  }
+
+  getEdges(users) {
+    let i = users.length;
+    const upper = {
+        estimation: 0,
+        users: []
+      },
+      lower = {
+        estimation: 999,
+        users: []
+      };
+
+    while (i--) {
+      const estimation = users[i].estimation;
+
+      if (estimation > upper.estimation) {
+        upper.estimation = estimation;
+        upper.users.push(users[i].name);
+      }
+
+      if (estimation < lower.estimation) {
+        lower.estimation = estimation;
+        lower.users.push(users[i].name);
+      }
+    }
+
+    return {
+      lower: lower,
+      upper: upper
+    };
   }
 
   render() {
@@ -48,7 +81,7 @@ export default class Vote extends Component {
       status: 'finished'
     }, {
       name: 'Nico',
-      estimation: 1,
+      estimation: 2,
       status: 'finished'
     }, {
       name: 'Oliver',
@@ -64,6 +97,7 @@ export default class Vote extends Component {
 
     const votes = `(${usersFinishedCount} of ${users.length} votes)`;
     const votesCompleted = usersFinishedCount === users.length;
+    const edges = this.getEdges(users);
 
     return (
       <div>
@@ -78,8 +112,8 @@ export default class Vote extends Component {
             {votesCompleted ? (
               <div>
                 <div className="vote__cards">
-                  <CardEdge users={ ['aas'] } estimation={ '8' } edge="upper" />
-                  <CardEdge users={ ['aas', 'asas'] } estimation={ '1' } edge="lower" />
+                  <CardEdge users={ edges.upper.users } estimation={ edges.upper.estimation } edge="upper" />
+                  <CardEdge users={ edges.lower.users } estimation={ edges.lower.estimation } edge="lower" />
                 </div>
                 <hr className="vote__hr vote__hr--completed" />
                 <Results users={ users } />
