@@ -7,12 +7,31 @@ import CardEdge from '../../molecules/card-edge';
 import './index.scss';
 
 export default class Vote extends Component {
+  constructor(props) {
+    super(props);
+
+    this.timer = null;
+  }
+
   componentDidMount() {
-    // check status every X seconds
+    this.fetchRoomLoop();
+  }
+
+  componentWillUnmount() {
+    window.clearTimeout(this.timer);
+  }
+
+  fetchRoomLoop() {
+    this.props.getRoom(this.props.params.id);
+
+    this.timer = window.setTimeout(() => {
+      this.fetchRoomLoop();
+    }, 2000);
   }
 
   render() {
     const { name, description, roomName } = this.props;
+    let usersFinishedCount = 0;
 
     // for testing
     const users = [{
@@ -22,13 +41,12 @@ export default class Vote extends Component {
     }, {
       name: 'Nico',
       estimation: 1,
-      status: 'finished'
+      status: 'in_progress'
     }, {
       name: 'Oliver',
       estimation: 8,
       status: 'finished'
     }];
-    let usersFinishedCount = 0;
 
     users.map((user) => {
       if (user.status === 'finished') {
@@ -70,5 +88,9 @@ Vote.propTypes = {
   name: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   roomName: PropTypes.string.isRequired,
-  users: PropTypes.array.isRequired
+  users: PropTypes.array.isRequired,
+  getRoom: PropTypes.func.isRequired,
+  params: PropTypes.object.isRequired,
+  addName: PropTypes.func.isRequired,
+  addDescription: PropTypes.func.isRequired
 };

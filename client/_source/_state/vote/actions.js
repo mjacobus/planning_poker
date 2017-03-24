@@ -22,6 +22,20 @@ export function createStorySuccess(payload) {
   };
 }
 
+export function addName(name) {
+  return {
+    type: constants.ADD_NAME,
+    name
+  };
+}
+
+export function addDescription(description) {
+  return {
+    type: constants.ADD_DESCRIPTION,
+    description
+  };
+}
+
 function checkStatus(response) {
   if (response.status >= 200 && response.status < 300) {
     return response;

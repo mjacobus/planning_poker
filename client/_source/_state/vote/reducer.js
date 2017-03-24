@@ -19,6 +19,16 @@ const reducer = (state = {}, action) => {
         description: action.description
       });
 
+    case constants.ADD_NAME:
+      return Object.assign({}, state, {
+        name: action.name
+      });
+
+    case constants.ADD_DESCRIPTION:
+      return Object.assign({}, state, {
+        description: action.description
+      });
+
     default:
       return state;
   }
