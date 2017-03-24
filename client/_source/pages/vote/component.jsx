@@ -5,6 +5,7 @@ import Page from '../../templates/page';
 import Results from '../../organisms/results';
 import CardEdge from '../../molecules/card-edge';
 import Spinner from '../../atoms/spinner';
+import Button from '../../atoms/button';
 import './index.scss';
 
 export default class Vote extends Component {
@@ -13,6 +14,7 @@ export default class Vote extends Component {
 
     this.showSpinner = true;
     this.timer = null;
+    this.onRestartClick = this.onRestartClick.bind(this);
   }
 
   componentDidMount() {
@@ -24,6 +26,10 @@ export default class Vote extends Component {
   }
 
   // don't update when no changes
+
+  onRestartClick() {
+    // restart voting
+  }
 
   fetchRoomLoop() {
     this.props.getRoom(this.props.params.id);
@@ -117,6 +123,8 @@ export default class Vote extends Component {
                 </div>
                 <hr className="vote__hr vote__hr--completed" />
                 <Results users={ users } />
+                <hr className="vote__hr vote__hr--completed" />
+                <Button text="Restart voting" className="vote__restart" rank={ 2 } onClick={ this.onRestartClick } />
               </div>
             ) : (
               <div>
