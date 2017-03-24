@@ -6,6 +6,7 @@ import Input from '../../atoms/input';
 import Button from '../../atoms/button';
 import Page from '../../templates/page';
 import Story from '../../molecules/story';
+import Spinner from '../../atoms/spinner';
 import './index.scss';
 
 export default class Admin extends Component {
@@ -94,7 +95,7 @@ export default class Admin extends Component {
     return (
       <div>
         {showSpinner && (
-          <div>{'pending'}</div>
+          <Spinner />
         )}
         {!showSpinner && adminUuid && votingUuid && (
           <div>

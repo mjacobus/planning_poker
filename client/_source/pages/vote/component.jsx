@@ -4,12 +4,14 @@ import Subheading from '../../atoms/subheading';
 import Page from '../../templates/page';
 import Results from '../../organisms/results';
 import CardEdge from '../../molecules/card-edge';
+import Spinner from '../../atoms/spinner';
 import './index.scss';
 
 export default class Vote extends Component {
   constructor(props) {
     super(props);
 
+    this.showSpinner = true;
     this.timer = null;
   }
 
@@ -30,8 +32,14 @@ export default class Vote extends Component {
   }
 
   render() {
-    const { name, description, roomName } = this.props;
-    let usersFinishedCount = 0;
+    const { name, description, roomName, pending } = this.props;
+    let usersFinishedCount = 0,
+      showSpinner = false;
+
+    if (pending && this.showSpinner) {
+      this.showSpinner = false;
+      showSpinner = true;
+    }
 
     // for testing
     const users = [{
@@ -58,30 +66,43 @@ export default class Vote extends Component {
     const votesCompleted = usersFinishedCount === users.length;
 
     return (
-      <Page className="vote">
-        <div className="vote__room">{ roomName }</div>
-        <Heading text={ name } />
-        <Subheading className="vote__subheading" text={ description } />
-        {votesCompleted ? (
-          <div>
-            <div className="vote__cards">
-              <CardEdge users={ ['aas'] } estimation={ '8' } edge="upper" />
-              <CardEdge users={ ['aas', 'asas'] } estimation={ '1' } edge="lower" />
-            </div>
-            <hr className="vote__hr vote__hr--completed" />
-            <Results users={ users } />
-          </div>
-        ) : (
-          <div>
-            <hr className="vote__hr" />
-            <Heading className="vote__vote-now" text="Please vote now!" />
-            <div>{ votes }</div>
-            <ul className="vote__users">
-              {users.map((user, index) => <Heading text={ user.name } key={ index } className={ `vote__user vote__user--${user.status}` } />)}
-            </ul>
-          </div>
+      <div>
+        {showSpinner && (
+          <Spinner />
         )}
-      </Page>
+        {!showSpinner && roomName && (
+          <Page className="vote">
+            <div className="vote__room">{ roomName }</div>
+            <Heading text={ name } />
+            <Subheading className="vote__subheading" text={ description } />
+            {votesCompleted ? (
+              <div>
+                <div className="vote__cards">
+                  <CardEdge users={ ['aas'] } estimation={ '8' } edge="upper" />
+                  <CardEdge users={ ['aas', 'asas'] } estimation={ '1' } edge="lower" />
+                </div>
+                <hr className="vote__hr vote__hr--completed" />
+                <Results users={ users } />
+              </div>
+            ) : (
+              <div>
+                <hr className="vote__hr" />
+                <Heading className="vote__vote-now" text="Please vote now!" />
+                <div>{ votes }</div>
+                <ul className="vote__users">
+                  {users.map((user, index) => <Heading text={ user.name } key={ index } className={ `vote__user vote__user--${user.status}` } />)}
+                </ul>
+              </div>
+            )}
+          </Page>
+        )}
+        {!showSpinner && !roomName && (
+          <Page className="admin">
+            <Heading text="This is not the room you are looking for" />
+            <Subheading text="Copied a wrong link?" />
+          </Page>
+        )}
+      </div>
     );
   }
 }
@@ -94,5 +115,6 @@ Vote.propTypes = {
   getRoom: PropTypes.func.isRequired,
   params: PropTypes.object.isRequired,
   addName: PropTypes.func.isRequired,
-  addDescription: PropTypes.func.isRequired
+  addDescription: PropTypes.func.isRequired,
+  pending: PropTypes.bool.isRequired
 };

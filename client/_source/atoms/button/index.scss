@@ -17,8 +17,16 @@
 .button__busy {
   position: absolute;
   opacity: 0;
-  top: 0;
+  top: 50%;
   left: 50%;
+  margin: 0;
+  font-size: 5px;
+  margin-left: -12px;
+  margin-top: -12px;
+  border-top-color: rgba($color--light, 0.2);
+  border-right-color: rgba($color--light, 0.2);
+  border-bottom-color: rgba($color--light, 0.2);
+  border-left-color: $color--light;
 }
 
 .button--primary {

@@ -1,4 +1,5 @@
 import React, { PropTypes, Component } from 'react';
+import Spinner from '../../atoms/spinner';
 import './index.scss';
 
 export default class Button extends Component {
@@ -13,7 +14,7 @@ export default class Button extends Component {
     return (
       <button type={ type } className={ ['button', className, pendingClass, rankClasses[rank]].join(' ') } onClick={ onClick }>
         <span className="button__text">{ text }</span>
-        <span className="button__busy">{ 'busy...' }</span>
+        <Spinner className="button__busy" />
       </button>
     );
   }

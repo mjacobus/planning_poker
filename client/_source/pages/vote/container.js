@@ -10,7 +10,8 @@ export const mapStateToProps = function(state) {
     roomName: state.room.name,
     name: state.vote.name || (lastStory ? lastStory.name : ''),
     description: state.vote.description || (lastStory ? lastStory.description : ''),
-    users: state.vote.users
+    users: state.vote.users,
+    pending: state.room.pending
   };
 };
 
