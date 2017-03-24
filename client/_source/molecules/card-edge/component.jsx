@@ -24,6 +24,6 @@ export default class CardEdge extends Component {
 
 CardEdge.propTypes = {
   users: PropTypes.array.isRequired,
-  estimation: PropTypes.string.isRequired,
+  estimation: PropTypes.number.isRequired,
   edge: PropTypes.string.isRequired
 };

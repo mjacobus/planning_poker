@@ -102,9 +102,9 @@ export default class Admin extends Component {
             <div className="links">
               <div className="links__content">
                 <Label text="Share the room link" />
-                <Input type="text" value={ adminUrl } />
+                <Input type="text" value={ adminUrl } readOnly />
                 <Label text="Share the voting link" />
-                <Input type="text" value={ votingUrl } />
+                <Input type="text" value={ votingUrl } readOnly />
               </div>
             </div>
             <Page className="admin">
