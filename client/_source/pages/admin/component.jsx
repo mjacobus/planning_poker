@@ -19,6 +19,8 @@ export default class Admin extends Component {
       adminUuid: this.props.params.id
     };
 
+    this.showSpinner = true;
+    this.timer = null;
     this.onAddStoryClick = this.onAddStoryClick.bind(this);
     this.onCloseClick = this.onCloseClick.bind(this);
     this.handleNameChange = this.handleNameChange.bind(this);
@@ -27,9 +29,19 @@ export default class Admin extends Component {
   }
 
   componentDidMount() {
+    this.fetchRoomLoop();
+  }
+
+  componentWillUnmount() {
+    window.clearTimeout(this.timer);
+  }
+
+  fetchRoomLoop() {
     this.props.getRoom(this.props.params.id);
 
-    // get users every X seconds
+    this.timer = window.setTimeout(() => {
+      this.fetchRoomLoop();
+    }, 2000);
   }
 
   onAddStoryClick() {
@@ -67,35 +79,24 @@ export default class Admin extends Component {
   }
 
   render() {
-    let { name, description, votingUuid, stories, pending, storyPending } = this.props;
-    let adminUuid = this.props.adminUuid || this.state.adminUuid;
+    const { name, description, votingUuid, stories, pending, storyPending } = this.props;
+    const adminUuid = this.props.adminUuid || this.state.adminUuid;
     const adminUrl = `${window.location.origin}/room/${this.props.adminUuid}/admin`;
     const votingUrl = `${window.location.origin}/room/${this.props.votingUuid}`;
     const isOpen = this.state.isOpen;
+    let showSpinner = false;
 
-    // for testing
-    if (!adminUuid || !votingUuid) {
-      adminUuid = true;
-      votingUuid = true;
-      name = 'Test name';
-      description = 'Test description';
-      stories = [{
-        name: 'Test story',
-        description: 'Test description',
-        estimation: 5
-      }, {
-        name: 'Test story 2',
-        description: 'Test description 2',
-        estimation: 10
-      }];
+    if (pending && this.showSpinner) {
+      this.showSpinner = false;
+      showSpinner = true;
     }
 
     return (
       <div>
-        {pending && (
+        {showSpinner && (
           <div>{'pending'}</div>
         )}
-        {!pending && adminUuid && votingUuid && (
+        {!showSpinner && adminUuid && votingUuid && (
           <div>
             <div className="links">
               <div className="links__content">
@@ -122,7 +123,7 @@ export default class Admin extends Component {
             </Page>
           </div>
         )}
-        {!pending && (!adminUuid || !votingUuid) && (
+        {!showSpinner && (!adminUuid || !votingUuid) && (
           <Page className="admin">
             <Heading text="This is not the room you are looking for" />
             <Subheading text="Copied a wrong link?" />

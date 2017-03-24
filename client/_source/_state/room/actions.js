@@ -117,7 +117,7 @@ export function getRoom(adminUuid) {
     .then(checkStatus)
     .then((response) => response.json())
     .then((response) => {
-      const responseData = response.estimation_rooms;
+      const responseData = response.estimation_room;
 
       dispatch(getRoomSuccess({
         name: responseData.name,
