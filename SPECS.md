@@ -1,6 +1,7 @@
 Project Specifications/Ideas
 ----------------------
 
+## Entities
 
 ```yml
 Room:
@@ -9,30 +10,35 @@ Room:
   name: string
   description: string
   stories: []
+  has_many: Estimations
+  has_many: Stories
 
 Story:
   room_id:
   url: string
   name: string
   description: string
-  estimation: string
-  status: string
-  rounds: []
-
-Participant:
-  role: string [voter, observer]
-  user_id: integer
-  story_id: integer
+  current: boolean
+  status:
+    - not_estimated
+    - estimated
+    - estimation_started
+    - estimation_finished
+    - current_topic
+  has_many: EstimationRounds
 
 EstimationRound:
   id: integer
-  uuid: string
   story_id: integer
   sequence: integer
+  status:
+    - ongoing
+    - finished
+    - cancelled
 
-Estimation:
-  round_id:
-  user_id:
+RoundParticipants:
+  user_id: integer
+  round_id: integer
   estimation: string
 
 Estimation::User:
@@ -64,16 +70,20 @@ Response:
     - Can round story result
 
 
-```ruby
-moderation_service = ModerationService.new(room)
-moderation_service.set_topic(story)         # set current estimation topic for the room
-moderation_service.current_topic            # get current estimation topic for the room
-moderation_service.reset_estimation         # current estimation/story
-moderation_service.assign_estimation(value) # define the estimation value for the current topic
-moderation_service.assign_voter(user)       # assign voter to current topic
-moderation_service.unassign_voter(user)     # unassign voter for current topic
+## Services
 
-participant = UserEstimationService.new(room, current_user, story)
-participant.estimate(value)                # set participant estimation
-participant.revoke_estimation              # revoke participant estimation
+```ruby
+
+moderation_service = ModerationService.new(room)
+moderation_service.set_topic_for_estimation(story)     # set current estimation topic for the room
+moderation_service.current_topic                       # get current estimation topic for the room
+moderation_service.estimate_current_topic_with(value)  # define the estimation value for the current topic
+moderation_service.start_new_round                     # starts a new round
+moderation_service.current_round                       # starts a new round
+
+round = EstimationRoundService.new(round, user)
+round.join                                             # set participant estimation
+round.leave                                            # set participant estimation
+round.estimate(value)                                  # set participant estimation
+round.revoke_estimation                                # revoke participant estimation
 ```

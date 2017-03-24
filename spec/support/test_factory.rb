@@ -16,47 +16,92 @@ class TestFactory
     @stories ||= StoryRepository.new
   end
 
-  def create_room(attributes = {})
-    attributes = fake_attributes(
-      :name,
-      :description,
-      :admin_uuid,
-      :voting_uuid
-    ).merge(attributes)
+  def rounds
+    @rounds ||= EstimationRoundRepository.new
+  end
 
+  def participants
+    @participants ||= RoundParticipantRepository.new
+  end
+
+  def users
+    @users ||= UserRepository.new
+  end
+
+  def create_room(attributes = {})
+    attributes = attributes_for_room(attributes)
     rooms.create(attributes)
   end
 
   def create_story(attributes = {})
-    attributes = fake_attributes(
-      :name,
-      :description,
-      :url
-    ).merge(attributes)
-
+    attributes = attributes_for_story(attributes)
     stories.create(attributes)
   end
 
-  def fake_attributes(*attributes)
-    seq = self.seq
+  def create_round(attributes = {})
+    attributes = attributes_for_round(attributes)
+    rounds.create(attributes)
+  end
 
-    {}.tap do |hash|
-      attributes.each do |attribute|
-        hash[attribute] = "#{attribute} #{seq}"
-      end
+  def create_participant(attributes = {})
+    attributes = attributes_for_participant(attributes)
+    participants.create(attributes)
+  end
+
+  def create_user(attributes = {})
+    attributes = attributes_for_user(attributes)
+    users.create(attributes)
+  end
+
+  def fake_attributes(*keys)
+    {}.tap do |attr|
+      keys.each { |key| attr[key] = "the #{key} #{seq}" }
     end
   end
 
   def attributes_for_story(attributes = {})
-    fake_attributes(
-      :name,
-      :description,
-      :url,
-      :status,
-      :estimation,
-    ).merge(id: seq,
-           room_id: seq,
-           created_at: Time.now,
-           updated_at: Time.now).merge(attributes)
+    defaults = { id: seq, room_id: seq, current: false }
+    fake = fake_attributes(:name, :description, :url, :status, :estimation)
+    fake.merge(defaults).merge(timestamps).merge(attributes)
+  end
+
+  def attributes_for_room(attributes = {})
+    seq = self.seq
+
+    defaults = {
+      id: seq,
+      room_id: seq,
+      admin_uuid: "admin-uuid-#{seq}",
+      voting_uuid: "voting-uuid-#{seq}"
+    }.merge(timestamps)
+
+    fake_attributes(:name, :description).merge(defaults).merge(attributes)
+  end
+
+  def attributes_for_round(attributes = {})
+    seq = self.seq
+    defaults = { id: seq, user_id: seq, story_id: seq }
+    fake_attributes.merge(defaults).merge(timestamps).merge(attributes)
+  end
+
+  def attributes_for_participant(attributes = {})
+    { user_id: seq, estimation_round_id: seq }.merge(timestamps).merge(attributes)
+  end
+
+  def attributes_for_user(attributes = {})
+    fake_attributes(:name).merge(timestamps).merge(attributes)
+  end
+
+  def timestamps
+    { created_at: Time.now, updated_at: Time.now }
+  end
+
+  def reload(entity)
+    repo_class = entity.class.to_s + 'Repository'
+    repo_class.constantize.new.find(entity.id)
+  end
+
+  def clear_all
+    [rooms, stories, rounds, participants].map(&:clear)
   end
 end

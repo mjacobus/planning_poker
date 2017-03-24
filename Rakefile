@@ -17,26 +17,27 @@ namespace :spec do
 end
 
 namespace :dev do
-  desc "fake records for development"
+  namespace :db do
+    desc "fake records for development"
+    task populate: :environment do
+      require_relative 'spec/support/test_factory.rb'
+      factory = TestFactory.new
 
-  task populate_database: :environment do
-    require_relative 'spec/support/test_factory.rb'
-    factory = TestFactory.new
+      1.upto(10) do |num|
+        room = factory.create_room(admin_uuid: "admin-uuid-#{num}")
 
-    1.upto(10) do |num|
-      room = factory.create_room(admin_uuid: "admin-uuid-#{num}")
-
-      1.upto(10) do
-        factory.create_story(room_id: room.id)
+          1.upto(10) do
+          factory.create_story(room_id: room.id)
+        end
       end
     end
-  end
 
-  desc "clear database"
-  task clear_database: :environment do
-    require_relative 'spec/support/test_factory.rb'
-    factory = TestFactory.new
-    factory.rooms.clear
-    factory.stories.clear
+    desc "clear database"
+    task clear: :environment do
+      require_relative 'spec/support/test_factory.rb'
+      factory = TestFactory.new
+      factory.rooms.clear
+      factory.stories.clear
+    end
   end
 end
