@@ -9,6 +9,11 @@ class EstimationService
     @users = users_repository
   end
 
+  def find_story_and_aggregate_by_id(story_id)
+    story = @stories.find(story_id) || raise(NotFoundError)
+    aggregate_story(story)
+  end
+
   def aggregate_story(story)
     rounds = story_rounds(story)
     story.with_rounds(rounds)

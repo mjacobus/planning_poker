@@ -32,3 +32,5 @@ get '/estimation_rooms/:admin_uuid', to: 'estimation_rooms#show'
 # Visualization
 #
 #   GET   /estimation_room/:room_uuid/current/status   current_estimation#status
+#
+get '/estimation_room/:uuid/stories/:id/status', to: 'estimation_room/story#status'

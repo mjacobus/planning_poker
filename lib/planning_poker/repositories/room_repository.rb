@@ -4,10 +4,14 @@ class RoomRepository < Hanami::Repository
     @stories = story_repository
   end
 
-  def find_by_admin_uuid(admin_uuid)
-    room = rooms.where(admin_uuid: admin_uuid).one
+  def find_by_admin_uuid(uuid)
+    room = rooms.where(admin_uuid: uuid).one
 
     with_stories(room)
+  end
+
+  def find_by_admin_uuid(uuid)
+    rooms.where(voting_uuid: uuid).limit(1).first
   end
 
   protected

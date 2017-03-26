@@ -18,8 +18,12 @@ class RoomService
     @rooms.create(attributes)
   end
 
-  def find_by_admin_uuid!(admin_uuid)
-    @rooms.find_by_admin_uuid(admin_uuid)
+  def find_by_admin_uuid!(uuid)
+    @rooms.find_by_admin_uuid(uuid)
+  end
+
+  def find_by_uuid(uuid)
+    @rooms.find_by_voting_uuid(uuid) || raise(DomainError.new('room not found'))
   end
 
   def append_story_to_room(room, story_attributes = {})
