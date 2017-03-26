@@ -32,10 +32,15 @@ RSpec.describe EstimationService do
 
     let(:story) { factory.create_story }
     let(:round) { factory.create_round(story_id: story.id) }
+    let(:user) { factory.create_user }
+    let(:participant) { factory.participants.add_participant(user, round) }
 
     before do
       factory.clear_all
+      story
       round
+      user
+      participant
     end
 
     specify 'aggregated is a story' do
@@ -63,6 +68,20 @@ RSpec.describe EstimationService do
       expect(rounds.first.created_at).to eq(round.created_at)
       expect(rounds.first.status).to eq(round.status)
       expect(rounds.first.updated_at).to eq(round.updated_at)
+    end
+
+    it 'has #rounds.first.participants' do
+      participants = aggregated.rounds.first.participants
+      first = participants.first
+
+      expect(participants.size).to be 1
+      expect(participants.first).to eq participant
+    end
+
+    it 'has #rounds.first.participants.user' do
+      the_user = aggregated.rounds.first.participants.first.user
+
+      expect(the_user).to eq(user)
     end
   end
 end

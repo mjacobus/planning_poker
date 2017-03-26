@@ -13,9 +13,14 @@ class EstimationRound < Hanami::Entity
     attribute :status, Types::String.default(STATUS_ONGOING)
     attribute :created_at,  Types::Time
     attribute :updated_at,  Types::Time
+    attribute :participants,  Types::Array.default([])
   end
 
   def ongoing?
     status == STATUS_ONGOING
+  end
+
+  def with_participants(participants)
+    self.class.new(attributes.merge(participants: participants))
   end
 end
