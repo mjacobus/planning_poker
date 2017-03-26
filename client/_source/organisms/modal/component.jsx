@@ -3,20 +3,37 @@ import Button from '../../atoms/button';
 import './index.scss';
 
 export default class Modal extends Component {
+  constructor(props) {
+    super(props);
+
+    this.onModalClick = this.onModalClick.bind(this);
+    this.onOverlayClick = this.onOverlayClick.bind(this);
+  }
+
+  onOverlayClick() {
+    this.props.onClose();
+  }
+
+  onModalClick(event) {
+    event.stopPropagation();
+  }
+
   render() {
-    const { children, onCancelClick, onSaveClick, open } = this.props;
+    const { children, onClose, onSave, open, text } = this.props;
+    const overlayOpenClass = open ? 'overlay--open' : '';
     const modalOpenClass = open ? 'modal--open' : '';
-    const modalContentOpenClass = open ? 'modal__content--open' : '';
 
     return (
-      <div className={ ['modal', modalOpenClass].join(' ') }>
-        <div className={ ['modal__content', modalContentOpenClass].join(' ') }>
+      <div className={ ['overlay', overlayOpenClass].join(' ') } onClick={ this.onOverlayClick }>
+        <div className={ ['modal', modalOpenClass].join(' ') } onClick={ this.onModalClick }>
           <div className="modal__header">
             { children }
           </div>
           <hr className="modal__hr" />
-          <Button text="Cancel" className="modal__cancel" rank={ 2 } onClick={ onCancelClick } />
-          <Button text="Save the result and back to list overview" className="modal__save" onClick={ onSaveClick } />
+          <div className="modal__buttons">
+            <Button text="Cancel" className="modal__cancel" rank={ 2 } onClick={ onClose } />
+            <Button text={ text } className="modal__save" onClick={ onSave } />
+          </div>
         </div>
       </div>
     );
@@ -29,7 +46,8 @@ Modal.propTypes = {
     PropTypes.element,
     PropTypes.string
   ]),
-  onSaveClick: PropTypes.func.isRequired,
-  onCancelClick: PropTypes.func.isRequired,
-  open: PropTypes.bool
+  onSave: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired,
+  open: PropTypes.bool,
+  text: PropTypes.string.isRequired
 };

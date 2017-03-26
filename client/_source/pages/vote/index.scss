@@ -84,3 +84,30 @@
 .vote__user--in_progress {
   color: $color--progress;
 }
+
+.vote__restart-message {
+  text-align: left;
+  margin-bottom: 0;
+}
+
+.vote__header {
+  display: flex;
+  align-items: center;
+}
+
+.vote__estimation {
+  font-size: 4.571rem;
+  width: 75px;
+  text-align: center;
+  margin-right: 15px;
+}
+
+.vote__name {
+  margin-bottom: 0;
+  text-align: left;
+}
+
+.vote__description {
+  text-align: left;
+  margin-bottom: 0;
+}

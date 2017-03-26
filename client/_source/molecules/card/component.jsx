@@ -3,6 +3,16 @@ import Button from '../../atoms/button';
 import './index.scss';
 
 export default class Card extends Component {
+  constructor(props) {
+    super(props);
+
+    this.onButtonClick = this.onButtonClick.bind(this);
+  }
+
+  onButtonClick() {
+    this.props.onButtonClick(this.props.estimation);
+  }
+
   render() {
     const { users, estimation } = this.props;
 
@@ -21,5 +31,6 @@ export default class Card extends Component {
 
 Card.propTypes = {
   users: PropTypes.array.isRequired,
-  estimation: PropTypes.string.isRequired
+  estimation: PropTypes.number.isRequired,
+  onButtonClick: PropTypes.func.isRequired
 };

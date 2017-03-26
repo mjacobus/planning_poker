@@ -3,6 +3,16 @@ import Button from '../../atoms/button';
 import './index.scss';
 
 export default class CardEdge extends Component {
+  constructor(props) {
+    super(props);
+
+    this.onButtonClick = this.onButtonClick.bind(this);
+  }
+
+  onButtonClick() {
+    this.props.onButtonClick(this.props.estimation);
+  }
+
   render() {
     const { users, estimation, edge } = this.props;
     const edgeText = edge === 'lower' ? 'Lowest vote' : 'Highest vote';
@@ -25,5 +35,6 @@ export default class CardEdge extends Component {
 CardEdge.propTypes = {
   users: PropTypes.array.isRequired,
   estimation: PropTypes.number.isRequired,
-  edge: PropTypes.string.isRequired
+  edge: PropTypes.string.isRequired,
+  onButtonClick: PropTypes.func.isRequired
 };

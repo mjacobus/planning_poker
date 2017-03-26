@@ -15,9 +15,13 @@ export default class Vote extends Component {
 
     this.showSpinner = true;
     this.timer = null;
-    this.onRestartClick = this.onRestartClick.bind(this);
+    this.estimation = null;
+    this.toggleRestartModal = this.toggleRestartModal.bind(this);
+    this.toggleSelectModal = this.toggleSelectModal.bind(this);
+    this.onRestartModalSave = this.onRestartModalSave.bind(this);
+    this.onSelectModalSave = this.onSelectModalSave.bind(this);
     this.state = {
-      saveModalOpen: false,
+      selectModalOpen: false,
       restartModalOpen: false
     };
   }
@@ -32,10 +36,26 @@ export default class Vote extends Component {
 
   // don't update when no changes
 
-  onRestartClick() {
+  toggleRestartModal() {
     this.setState({
-      restartModalOpen: true
+      restartModalOpen: !this.state.restartModalOpen
     });
+  }
+
+  toggleSelectModal(estimation) {
+    this.estimation = typeof estimation === 'number' ? estimation : null;
+
+    this.setState({
+      selectModalOpen: !this.state.selectModalOpen
+    });
+  }
+
+  onRestartModalSave() {
+
+  }
+
+  onSelectModalSave() {
+    
   }
 
   fetchRoomLoop() {
@@ -79,6 +99,8 @@ export default class Vote extends Component {
 
   render() {
     const { name, description, roomName, pending } = this.props;
+    const restartText = 'Yes, I’m Sure. Please restart the voting';
+    const selectText = 'Save the result and back to list overview';
     let usersFinishedCount = 0,
       showSpinner = false;
 
@@ -125,17 +147,13 @@ export default class Vote extends Component {
             {votesCompleted ? (
               <div>
                 <div className="vote__cards">
-                  <CardEdge users={ edges.upper.users } estimation={ edges.upper.estimation } edge="upper" />
-                  <CardEdge users={ edges.lower.users } estimation={ edges.lower.estimation } edge="lower" />
+                  <CardEdge users={ edges.upper.users } estimation={ edges.upper.estimation } edge="upper" onButtonClick={ this.toggleSelectModal } />
+                  <CardEdge users={ edges.lower.users } estimation={ edges.lower.estimation } edge="lower" onButtonClick={ this.toggleSelectModal } />
                 </div>
                 <hr className="vote__hr vote__hr--completed" />
-                <Results users={ users } />
+                <Results users={ users } onButtonClick={ this.toggleSelectModal } />
                 <hr className="vote__hr vote__hr--completed" />
-                <Button text="Restart voting" className="vote__restart" rank={ 2 } onClick={ this.onRestartClick } />
-                <Modal open={ this.state.restartModalOpen } onClick={''}>
-                  <Heading text={ name } />
-                  <Subheading text={ description } />
-                </Modal>
+                <Button text="Restart voting" className="vote__restart" rank={ 2 } onClick={ this.toggleRestartModal } />
               </div>
             ) : (
               <div>
@@ -155,6 +173,19 @@ export default class Vote extends Component {
             <Subheading text="Copied a wrong link?" />
           </Page>
         )}
+        <Modal open={ this.state.restartModalOpen } text={ restartText } onClose={ this.toggleRestartModal } onSave={ this.onRestartModalSave }>
+          <Heading className="vote__restart-message" text="All results will be delete if you restart the voting now." />
+          <Heading className="vote__restart-message" text="Are you sure to restart the voting?" />
+        </Modal>
+        <Modal open={ this.state.selectModalOpen } text={ selectText } onClose={ this.toggleSelectModal } onSave={ this.onSelectModalSave }>
+          <div className="vote__header">
+            <div className="vote__estimation">{ this.estimation }</div>
+            <div>
+              <Heading className="vote__name" text={ name } />
+              <Subheading className="vote__description" text={ description } />
+            </div>
+          </div>
+        </Modal>
       </div>
     );
   }

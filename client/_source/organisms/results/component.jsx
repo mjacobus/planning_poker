@@ -9,7 +9,7 @@ export default class Results extends Component {
 
     for (const i in results) {
       if (results.hasOwnProperty(i)) {
-        resultsMarkup.push(<Card key={ index } estimation={ i } users={ results[i].users } />);
+        resultsMarkup.push(<Card key={ index } estimation={ parseInt(i, 10) } users={ results[i].users } onButtonClick={ this.props.onButtonClick } />);
         index++;
       }
     }
@@ -42,5 +42,6 @@ export default class Results extends Component {
 }
 
 Results.propTypes = {
-  users: PropTypes.array.isRequired
+  users: PropTypes.array.isRequired,
+  onButtonClick: PropTypes.func.isRequired
 };
