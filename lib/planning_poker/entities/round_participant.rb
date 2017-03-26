@@ -12,4 +12,8 @@ class RoundParticipant < Hanami::Entity
   def with_user(user)
     self.class.new(attributes.merge(user: user))
   end
+
+  def user
+    User.new(super)
+  end
 end

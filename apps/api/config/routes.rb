@@ -32,29 +32,3 @@ get '/estimation_rooms/:admin_uuid', to: 'estimation_rooms#show'
 # Visualization
 #
 #   GET   /estimation_room/:room_uuid/current/status   current_estimation#status
-{
-  estimation: {
-    story_id: 1,
-    status: 'story_status',
-    value: 'story estimation',
-    story: {
-      id: 'the_id',
-      name: 'name',
-      description: 'description',
-      url: 'url'
-    },
-    participants: [
-      { id: 1, name: 'foo', role: 'voter' },
-      { id: 1, name: 'foo', role: 'observers' }
-    ],
-    rounds: [
-      {
-        round_id: 1,
-        estimations: [
-          {user_id: 1, estimation: 5},
-          {user_id: 2, estimation: 8}
-        ]
-      }
-    ]
-  }
-}
