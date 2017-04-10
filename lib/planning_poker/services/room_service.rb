@@ -8,7 +8,7 @@ class RoomService
   end
 
   def create(attributes = {})
-    RoomCreationValidator.new.validate!(attributes)
+    RoomCreationValidator.new.validate(attributes)
 
     attributes = attributes.merge(
       voting_uuid: UniqueId.new.to_s,
@@ -27,7 +27,7 @@ class RoomService
   end
 
   def append_story_to_room(room, story_attributes = {})
-    StoryCreationValidator.new.validate!(story_attributes)
+    StoryCreationValidator.new.validate(story_attributes)
 
     story_attributes = story_attributes.merge(
       room_id: room.id
