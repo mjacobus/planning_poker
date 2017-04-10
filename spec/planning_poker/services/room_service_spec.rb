@@ -53,16 +53,16 @@ RSpec.describe RoomService do
     end
   end
 
-  describe '#find_by_admin_uuid!' do
+  describe '#find_by_admin_uuid' do
     it 'finds story when exists' do
       example_room
 
-      expect(subject.find_by_admin_uuid!(example_room.admin_uuid)).to eq(example_room)
+      expect(subject.find_by_admin_uuid(example_room.admin_uuid)).to eq(example_room)
     end
 
     it 'raises an exception when record cannot be found' do
       expect do
-        subject.find_by_admin_uuid!('foo')
+        subject.find_by_admin_uuid('foo')
       end.to raise_error(NotFoundError)
     end
   end

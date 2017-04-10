@@ -18,7 +18,7 @@ class RoomService
     @rooms.create(attributes)
   end
 
-  def find_by_admin_uuid!(uuid)
+  def find_by_admin_uuid(uuid)
     @rooms.find_by_admin_uuid(uuid)
   end
 
