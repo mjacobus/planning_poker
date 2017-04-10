@@ -10,7 +10,7 @@ class EstimationService
   end
 
   def find_story_and_aggregate_by_id(story_id)
-    story = @stories.find(story_id) || raise(NotFoundError)
+    story = stories.find(story_id) || raise(NotFoundError)
     aggregate_story(story)
   end
 
@@ -22,7 +22,7 @@ class EstimationService
   private
 
   def story_rounds(story)
-    @rounds.story_rounds(story).to_a.map do |round|
+    rounds.story_rounds(story).to_a.map do |round|
       round_with_participants(round)
     end
   end
@@ -33,13 +33,19 @@ class EstimationService
   end
 
   def round_participants(round)
-    @participants.participants_in_round(round).to_a.map do |participant|
+    participants.participants_in_round(round).to_a.map do |participant|
       participant_with_user(participant)
     end
   end
 
   def participant_with_user(participant)
-    user = @users.find(participant.user_id)
+    user = users.find(participant.user_id)
     participant.with_user(user)
   end
+
+  protected
+
+  attr_reader :rounds
+  attr_reader :participants
+  attr_reader :users
 end
