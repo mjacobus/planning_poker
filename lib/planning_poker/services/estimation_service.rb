@@ -2,11 +2,13 @@ class EstimationService
   def initialize(
     rounds_repository: EstimationRoundRepository.new,
     participants_repository: RoundParticipantRepository.new,
-    users_repository: UserRepository.new
+    users_repository: UserRepository.new,
+    stories_repository: StoryRepository.new
   )
     @rounds = rounds_repository
     @participants = participants_repository
     @users = users_repository
+    @stories = stories_repository
   end
 
   def find_story_and_aggregate_by_id(story_id)
@@ -48,4 +50,5 @@ class EstimationService
   attr_reader :rounds
   attr_reader :participants
   attr_reader :users
+  attr_reader :stories
 end

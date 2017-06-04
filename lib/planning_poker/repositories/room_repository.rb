@@ -10,6 +10,12 @@ class RoomRepository < Hanami::Repository
     with_stories(room)
   end
 
+  def find_by_voting_uuid(uuid)
+    room = rooms.where(voting_uuid: uuid).limit(1).first
+    fail(NotFoundError, "cannot find by id #{uuid}") unless room
+    with_stories(room)
+  end
+
   protected
 
   def with_stories(room)
