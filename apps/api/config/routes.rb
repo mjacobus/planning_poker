@@ -17,15 +17,15 @@ get '/estimation_rooms/:admin_uuid', to: 'estimation_rooms#show'
 
 # Controlls
 #
-#   POST   /estimation_room/:admin_uuid/stories/:id/start  current_estimation#start
-#   POST   /estimation_room/:admin_uuid/current/start      current_estimation#start
-#   POST   /estimation_room/:admin_uuid/current/reset      current_estimation#reset
-#   PUT    /estimation_room/:admin_uuid/current/estimate   current_estimation#set_estimation
+#   POST   /estimation_rooms/:admin_uuid/stories/:id/start  current_estimation#start
+#   POST   /estimation_rooms/:admin_uuid/current/start      current_estimation#start
+#   POST   /estimation_rooms/:admin_uuid/current/reset      current_estimation#reset
+#   PUT    /estimation_rooms/:admin_uuid/current/estimate   current_estimation#set_estimation
 
 # Voting
 #
-#   POST     /estimation_room/:room_uuid/current                current_estimation#join
-#   DELETE   /estimation_room/:room_uuid/current                current_estimation#exit
+#   POST     /estimation_rooms/:room_uuid/current                current_estimation#join
+#   DELETE   /estimation_rooms/:room_uuid/current                current_estimation#exit
 #   PUT      /estimation/:room_uuid/current/estimate            current_estimation#estimate
 #   DELETE   /estimation/:room_uuid/current/revoke_estimation   current_estimation#revoke_estimation
 
@@ -33,4 +33,4 @@ get '/estimation_rooms/:admin_uuid', to: 'estimation_rooms#show'
 #
 #   GET   /estimation_room/:room_uuid/current/status   current_estimation#status
 #
-get '/estimation_room/:uuid/stories/:id/status', to: 'estimation_room/story#status'
+get '/estimation_rooms/:uuid/stories/:id/status', to: 'estimation_rooms/story#status'

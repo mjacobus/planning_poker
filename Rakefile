@@ -30,7 +30,7 @@ namespace :dev do
         )
 
         1.upto(10) do
-          factory.create_story(room_id: room.id)
+          factory.create_story(room_id: room.id, estimation: 5)
         end
       end
     end
@@ -40,6 +40,12 @@ namespace :dev do
       require_relative 'spec/support/test_factory.rb'
       factory = TestFactory.new
       factory.clear_all
+    end
+
+    desc "clears and repopulates"
+    task repopulate: :environment do
+      Rake::Task['dev:db:clear'].invoke
+      Rake::Task['dev:db:populate'].invoke
     end
   end
 end
