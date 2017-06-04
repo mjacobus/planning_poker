@@ -8,22 +8,26 @@ class RoomService
   end
 
   def create(attributes = {})
-    RoomCreationValidator.new.validate!(attributes)
+    RoomCreationValidator.new.validate(attributes)
 
     attributes = attributes.merge(
       voting_uuid: UniqueId.new.to_s,
       admin_uuid: UniqueId.new.to_s
     )
 
-    @rooms.create(attributes)
+    rooms.create(attributes)
   end
 
-  def find_by_admin_uuid!(admin_uuid)
-    @rooms.find_by_admin_uuid(admin_uuid)
+  def find_by_admin_uuid(uuid)
+    rooms.find_by_admin_uuid(uuid)
+  end
+
+  def find_by_uuid(uuid)
+    rooms.find_by_voting_uuid(uuid) || raise(DomainError.new('room not found'))
   end
 
   def append_story_to_room(room, story_attributes = {})
-    StoryCreationValidator.new.validate!(story_attributes)
+    StoryCreationValidator.new.validate(story_attributes)
 
     story_attributes = story_attributes.merge(
       room_id: room.id

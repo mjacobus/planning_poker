@@ -22,4 +22,24 @@ RSpec.describe RoomRepository do
       expect(admin_room.stories.first).to eq(story1)
     end
   end
+
+  describe '#find_by_voting_uuid' do
+    before do
+      factory.rooms.clear
+      factory.stories.clear
+
+      story1
+      story2
+      factory.create_story(room_id: factory.create_room.id)
+    end
+
+    it 'returns a room with its stories' do
+      voting_room = subject.find_by_voting_uuid(room.voting_uuid)
+      expect(voting_room.admin_uuid).to eq room.admin_uuid
+
+      # expect(voting_room).to respond_to(:stories)
+      # expect(voting_room.stories.count).to be(2)
+      # expect(voting_room.stories.first).to eq(story1)
+    end
+  end
 end

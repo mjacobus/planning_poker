@@ -6,7 +6,7 @@ class UserService
   end
 
   def create_by_name(new_username)
-    NameValidator.new.validate!(new_username)
+    NameValidator.new.validate(new_username)
     @repository.create(name: new_username)
   end
 

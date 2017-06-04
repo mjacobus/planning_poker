@@ -3,7 +3,7 @@ module Api::Controllers::EstimationRooms
     protected
 
     def admin_room(admin_uuid)
-      RoomService.new.find_by_admin_uuid!(admin_uuid)
+      RoomService.new.find_by_admin_uuid(admin_uuid) || fail(NotFoundError, 'room not found')
     end
 
     def room_service

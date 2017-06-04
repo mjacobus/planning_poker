@@ -21,7 +21,7 @@ RSpec.describe Api::Controllers::EstimationRooms::Stories::Create do
   end
 
   subject do
-    allow_any_instance_of(RoomService).to receive(:find_by_admin_uuid!)
+    allow_any_instance_of(RoomService).to receive(:find_by_admin_uuid)
       .with('the uuid') { room }
 
     allow_any_instance_of(RoomService).to receive(:append_story_to_room)

@@ -1,5 +1,5 @@
 class Validator
-  def validate!(value)
+  def validate(value)
     @errors = []
     return if valid?(value)
     fail(ValidationError, error_message)
