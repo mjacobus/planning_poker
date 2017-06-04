@@ -24,9 +24,12 @@ namespace :dev do
       factory = TestFactory.new
 
       1.upto(10) do |num|
-        room = factory.create_room(admin_uuid: "admin-uuid-#{num}")
+        room = factory.create_room(
+          admin_uuid: "admin-uuid-#{num}",
+          voting_uuid: "uuid-#{num}",
+        )
 
-          1.upto(10) do
+        1.upto(10) do
           factory.create_story(room_id: room.id)
         end
       end
@@ -36,8 +39,7 @@ namespace :dev do
     task clear: :environment do
       require_relative 'spec/support/test_factory.rb'
       factory = TestFactory.new
-      factory.rooms.clear
-      factory.stories.clear
+      factory.clear_all
     end
   end
 end
