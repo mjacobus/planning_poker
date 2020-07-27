@@ -118,7 +118,7 @@ GEM
       url_mount (~> 0.2.1)
     ice_nine (0.11.2)
     inflecto (0.0.2)
-    json (2.0.3)
+    json (2.3.1)
     mail (2.6.4)
       mime-types (>= 1.16, < 4)
     method_source (0.8.2)
