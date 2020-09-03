@@ -64,7 +64,7 @@
     "html-webpack-plugin": "2.22.0",
     "http-proxy-middleware": "0.17.4",
     "minami": "1.1.1",
-    "node-sass": "4.5.0",
+    "node-sass": "4.14.1",
     "npm-run-all": "4.0.1",
     "open": "0.0.5",
     "postcss-loader": "1.2.2",
